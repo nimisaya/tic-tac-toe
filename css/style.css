@@ -1,8 +1,11 @@
 :root {
+  /* Colours */
   --test-colour: hotpink; /* Used when undecided or experimenting */
   --main-background-colour: #EBEBEB;
   --board-colour: white;
-  --grid-colour: blue;
+  --grid-colour: hotpink;
+
+  /* Dimensions */
   --num-rows-cols: 3;
 }
 
@@ -19,6 +22,8 @@ body {
   margin: 0; /* Remove browser margin */
 
   height: 100vh;
+
+  background-color: var(--main-background-colour);
 
   display: grid;
   grid-template-rows: 128px 1fr 64px;
@@ -40,8 +45,11 @@ main {
 /* Game board */
 #gameBoard {
   margin: 0 auto;
+
   width: 80%;
   height: 80%;
+
+  background-color: var(--board-colour);
 }
 
 /* Game grid */
@@ -54,22 +62,34 @@ main {
   grid-row-gap: 0px;
 }
 
-.square {
+.gridSquare {
   padding: 8px 4px;
-  border-left: 1px solid black;
-  border-bottom: 1px solid black;
+
+  /* TODO: Make border different based on position e.g. square 0,0 should have border-bottom and border-right */
+  border-left: 1px solid var(--grid-colour);
+  border-bottom: 1px solid var(--grid-colour);
 }
 
-
-
 /* Game pieces */
-.gamePiece {}
+.gamePiece {
+  /* height: height of square - padding */
+  height: 100px;
+  /* width: width of square - padding */
+  width: 100px;
+
+}
 
 /* Noughts */
-.noughts {}
+.noughts {
+  border-radius: 50%;
+  background-color: var(--test-colour);
+}
 
 /* Crosses */
-.crosses {}
+.crosses {
+  background-color: blue;
+  content: "\274c";
+}
 
 /* Winner indication */
 /* Draw indication */
