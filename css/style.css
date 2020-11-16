@@ -1,3 +1,62 @@
+:root {
+  --test-colour: hotpink; /* Used when undecided or experimenting */
+  --main-background-colour: #EBEBEB;
+  --board-colour: white;
+  --grid-colour: blue;
+}
+
+
+* {
+  border: 1px solid blue;
+
+  -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+        box-sizing: border-box;
+}
+
 body {
-  color: hotpink;
+  margin: 0; /* Remove browser margin */
+
+  height: 100vh;
+
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+}
+
+/* Header */
+header {
+  grid-area: "header";
+}
+
+main {
+  grid-area: "main";
+}
+
+/* Game board */
+#gameBoard {
+}
+
+/* Game grid */
+#grid {}
+/* Vertical */
+/* Horizontal */
+
+/* Game pieces */
+.gamePiece {}
+
+/* Noughts */
+.noughts {}
+
+/* Crosses */
+.crosses {}
+
+/* Winner indication */
+/* Draw indication */
+
+footer {
+  grid-area: "footer";
 }
