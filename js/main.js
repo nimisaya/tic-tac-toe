@@ -134,18 +134,21 @@ const runTests = function(){
   // console.log(makeMove(0,1, 'O'));
 
   // Draw
+  // makeMove(0,0, 'O');
+  // makeMove(0,1, 'X');
+  // makeMove(0,2, 'O');
+  //
+  // makeMove(1,0, 'X');
+  // makeMove(1,1, 'O');
+  // makeMove(1,2, 'X');
+  //
+  // makeMove(2,0, 'X');
+  // makeMove(2,1, 'O');
+  // console.log(makeMove(2,2, 'X'));
+
+  // Illegal move
   makeMove(0,0, 'O');
-  makeMove(0,1, 'X');
-  makeMove(0,2, 'O');
-
-  makeMove(1,0, 'X');
-  makeMove(1,1, 'O');
-  makeMove(1,2, 'X');
-
-  makeMove(2,0, 'X');
-  makeMove(2,1, 'O');
-  console.log(makeMove(2,2, 'X'));
-
+  console.log(makeMove(0,0, 'X'));
 
   console.log(gameBoard);
 }
