@@ -37,17 +37,14 @@ const makeMove = function(row, column, player){
   console.log(`Row plays: ${rows}, Column plays: ${columns}, Diagonal: ${positiveDiagonal}, Neg Diagonal: ${negativeDiagonal}`);
 
   // Game over (Win || Lose || Draw)
-  if (rows[row] === numberOfSquares){
+  if ((rows[row] === numberOfSquares)
+  ||(columns[column] === numberOfSquares)
+  || (positiveDiagonal[row] === numberOfSquares)
+  || (negativeDiagonal[row] === numberOfSquares)){
+
     console.log('Game over');
+    // Check the current row / column / diagonal / neg diagonal to see if all same piece. If they are then this player is the winner else it's a draw
   }
-
-
-  // Game over (Win || Lose || Draw)
-  // if (rows[row] === numberOfSquares)||(columns[column] === numberOfSquares)|| (positiveDiagonal[row] === numberOfSquares)|| (negativeDiagonal[row] === numberOfSquares){
-
-      // Check the current row / column / diagonal / neg diagonal to see if all same piece. If they are then this player is the winner else it's a draw
-
-  // }
 
 } // makeMove()
 
