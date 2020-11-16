@@ -12,6 +12,8 @@
 
 * {
   border: 1px solid blue;
+  margin: 0;
+  padding: 0;
 
   -webkit-box-sizing: border-box;
    -moz-box-sizing: border-box;
@@ -19,7 +21,7 @@
 }
 
 body {
-  margin: 0; /* Remove browser margin */
+
 
   height: 100vh;
 
@@ -68,6 +70,10 @@ main {
   /* TODO: Make border different based on position e.g. square 0,0 should have border-bottom and border-right */
   border-left: 1px solid var(--grid-colour);
   border-bottom: 1px solid var(--grid-colour);
+}
+
+.gridSquare:hover {
+  background-color: var(--test-colour);
 }
 
 /* Game pieces */
