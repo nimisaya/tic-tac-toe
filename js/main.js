@@ -17,6 +17,9 @@ const comparisonString = [];
 
 const makeMove = function(row, column, player){
   // TODO: Check position available
+  if (gameBoard[row][column] !== 0){
+    return 'Invalid move'
+  }
 
   // Add piece
   gameBoard[row][column] = player;
@@ -46,6 +49,7 @@ const makeMove = function(row, column, player){
     } else {
       comparisonString.length = 0;
     }
+  // COLUMN
   } else if (columns[column] === gridSize){
 
       for (let i = 0; i < columns.length; i++){
@@ -57,7 +61,7 @@ const makeMove = function(row, column, player){
     } else {
       comparisonString.length = 0;
     }
-
+  // POSITIVE DIAGONAL
   } else if (positiveDiagonal === gridSize){
 
     for (let i = 0; i < gridSize; i++){
@@ -69,6 +73,7 @@ const makeMove = function(row, column, player){
     } else {
       comparisonString.length = 0;
     }
+  // NEGATIVE DIAGONAL
   } else if (negativeDiagonal === gridSize){
 
     let j = gridSize - 1;
@@ -86,6 +91,9 @@ const makeMove = function(row, column, player){
   }
 
   // TODO: It's a draw
+  if (gameBoard.every(function(letter){return letter !== 0;})){
+    return `It's a draw.`
+  }
 }
 
 const runTests = function(){
@@ -115,15 +123,29 @@ const runTests = function(){
   // makeMove(1,1,'X');
   // makeMove(2,0,'X');
 
-  // Taking Turns
-  makeMove(1,1, 'X');
+  // Taking Turns and 0 wins
+  // makeMove(1,1, 'X');
+  // makeMove(0,0, 'O');
+  // makeMove(1,0, 'X');
+  // makeMove(1,2, 'O');
+  // makeMove(2,0, 'X');
+  // makeMove(0,2, 'O');
+  // makeMove(2,1, 'X');
+  // console.log(makeMove(0,1, 'O'));
+
+  // Draw
   makeMove(0,0, 'O');
-  makeMove(1,0, 'X');
-  makeMove(1,2, 'O');
-  makeMove(2,0, 'X');
+  makeMove(0,1, 'X');
   makeMove(0,2, 'O');
-  makeMove(2,1, 'X');
-  console.log(makeMove(0,1, 'O'));
+
+  makeMove(1,0, 'X');
+  makeMove(1,1, 'O');
+  makeMove(1,2, 'X');
+
+  makeMove(2,0, 'X');
+  makeMove(2,1, 'O');
+  console.log(makeMove(2,2, 'X'));
+
 
   console.log(gameBoard);
 }
