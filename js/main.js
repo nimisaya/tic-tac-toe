@@ -3,10 +3,9 @@ const gridSize = 3;
 
 // Game Board
 const gameBoard = [];
-gameBoard.push(Array(gridSize).fill(0));
-gameBoard.push(Array(gridSize).fill(0));
-gameBoard.push(Array(gridSize).fill(0));
-
+for (let i = 0; i < gridSize; i++){
+  gameBoard.push(Array(gridSize).fill(0));
+}
 
 const rows = Array(gridSize).fill(0);
 const columns = Array(gridSize).fill(0);
