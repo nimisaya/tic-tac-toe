@@ -3,6 +3,7 @@
   --main-background-colour: #EBEBEB;
   --board-colour: white;
   --grid-colour: blue;
+  --num-rows-cols: 3;
 }
 
 
@@ -20,7 +21,7 @@ body {
   height: 100vh;
 
   display: grid;
-  grid-template-rows: auto;
+  grid-template-rows: 128px 1fr 64px;
   grid-template-areas:
     "header"
     "main"
@@ -38,12 +39,28 @@ main {
 
 /* Game board */
 #gameBoard {
+  margin: 0 auto;
+  width: 80%;
+  height: 80%;
 }
 
 /* Game grid */
-#grid {}
-/* Vertical */
-/* Horizontal */
+#grid {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(var(--num-rows-cols), 1fr);
+  grid-template-rows: repeat(var(--num-rows-cols), 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.square {
+  padding: 8px 4px;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+
 
 /* Game pieces */
 .gamePiece {}
