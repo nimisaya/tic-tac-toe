@@ -20,16 +20,28 @@ const game = {
     }
   }, // setupGame()
 
+  isIdentical: function(array){
+    for(let i = 0; i < array.length - 1; i++) {
+      console.log(array[i] !== array[i + 1])
+
+      if(array[i] !== array[i + 1]) {
+        return false;
+      }
+    } // for
+    return true;
+  }, // isIdentical()
+
   checkGameState: function(row, column, player){
     const comparisonString = [];
 
     // Check if won across Row
     if(this.rows[row] === this.gridSize){
 
-      for (let i = 0; i < this.rows.length; i++){
+      for (let i = 0; i < this.gridSize; i++){
         comparisonString.push(this.board[row][i]);
-      }
-      if (comparisonString.every(function(letter){return letter === player;})){
+      }// for
+
+      if (this.isIdentical(comparisonString)){
         return `Winner`;
       } else {
         comparisonString.length = 0;
@@ -39,7 +51,7 @@ const game = {
         for (let i = 0; i < this.columns.length; i++){
           comparisonString.push(this.board[i][column]);
         }
-      if (comparisonString.every(function(letter){return letter === player;})){
+      if (this.isIdentical(comparisonString)){
         return `Winner`;
       } else {
         comparisonString.length = 0;
@@ -49,7 +61,7 @@ const game = {
       for (let i = 0; i < this.gridSize; i++){
         comparisonString.push(this.board[i][i]);
       }
-      if (comparisonString.every(function(letter){return letter === player;})){
+      if (this.isIdentical(comparisonString)){
         return `Winner`;
       } else {
         comparisonString.length = 0;
@@ -61,7 +73,7 @@ const game = {
           comparisonString.push(this.board[i][j]);
           j--;
       }
-      if (comparisonString.every(function(letter){return letter === player;})){
+      if (this.isIdentical(comparisonString)){
         return `Winner`;
       } else {
         comparisonString.length = 0;
@@ -76,8 +88,8 @@ const game = {
   }, // checkGameState()
 
   makeMove: function(row, column, player){
-    if (this.board[row][column] !== 0){
-      return 'Invalid'
+    if ((this.board[row][column] !== 0)){
+      return 'Invalid';
     }
     // Add piece
     this.board[row][column] = player;
@@ -105,11 +117,11 @@ const game = {
 
 
 const runTests = function(){
-game.setup(4);
+game.setup(3);
   // Row 0 Win
-  // game.makeMove(0,0,'X');
-  // console.log(game.makeMove(0,1,'X'));
-  // console.log(makeMove(0,2,'X'));
+  console.log(game.makeMove(0,0,'X'));
+  console.log(game.makeMove(0,1,'X'));
+  console.log(game.makeMove(0,2,'X'));
 
   // Row 2 Win
   // makeMove(2,0,'X');
@@ -121,9 +133,9 @@ game.setup(4);
   // makeMove(2,2,'X');
 
   // // Diagonal -> Win
-  game.makeMove(0,0,'X');
-  console.log(game.makeMove(1,1,'X'));
-  console.log(game.makeMove(2,2,'X'));
+  // game.makeMove(0,0,'X');
+  // console.log(game.makeMove(1,1,'X'));
+  // console.log(game.makeMove(2,2,'X'));
 
   // Diagonal <- Win
   // makeMove(0,2,'X');
