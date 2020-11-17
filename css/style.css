@@ -48,8 +48,8 @@ main {
 #gameBoard {
   margin: 0 auto;
 
-  width: 80%;
-  height: 80%;
+  width: 60vh;
+  height: 60vh;
 
   background-color: var(--board-colour);
 }
