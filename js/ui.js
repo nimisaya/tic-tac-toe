@@ -2,6 +2,11 @@
 let player = `X`;
 let turn = 0;
 
+const reset = function(){
+  game.reset();
+
+}
+
 
 $(document).ready(function(){
 
@@ -35,11 +40,14 @@ $(document).ready(function(){
     const position = getGridElementsPosition($(this).index());
 
     const gameState = game.makeMove(position.row,position.column,player);
-    console.log(`row: ${position.row}, column: ${position.column}, Board: ${game.board}`);
+    // console.log(`row: ${position.row}, column: ${position.column}, Board: ${game.board}`);
 
     // Display piece on board
     const $piece = $(`<div class="gamePiece ${player}"></div>`);
-    $(this).append($piece);
+    if (gameState !== 'Invalid'){
+      $(this).append($piece);
+    }
+
 
     turn++;
 
