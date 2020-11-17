@@ -19,9 +19,22 @@ $(document).ready(function(){
   }
 
   // TODO: User clicks on square show piece on Board
-  $grid.on('click', function(){
-    alert(event.srcElement.id);
-  })
+  $grid.on('click', 'div', function(event){
+    const position = getGridElementsPosition($(this).index());
+    game.makeMove(position.row,position.column,'X')
+  }); // $grid.on click
+
+  function getGridElementsPosition(index){
+    const numColumns = $grid.css('grid-template-columns').split(' ').length;
+
+    const rowPosition = Math.floor(index / numColumns);
+    const columnPosition = index % numColumns;
+
+    return {row: rowPosition, column: columnPosition};
+  } // getGridElementsPosition()
+
+
+
   // TODO: Update gameboard & state
 
 });
