@@ -112,6 +112,16 @@ const game = {
 
   console.log(gameState)
   }, // makeMove()
+
+  reset: function(){
+    // Game Board
+    this.setup(this.gridSize);
+
+    rows =  Array(this.gridSize).fill(0);
+    columns = Array(this.gridSize).fill(0);
+    positiveDiagonal = 0;
+    negativeDiagonal = 0;
+  }, // reset()
 }; // game
 
 

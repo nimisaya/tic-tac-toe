@@ -1,8 +1,6 @@
 
 let player = `X`;
-let count = 0;
-
-
+let turn = 0;
 
 
 $(document).ready(function(){
@@ -24,9 +22,11 @@ $(document).ready(function(){
     $grid.append($square);
   } // for
 
-  // TODO: User clicks on square show piece on Board
+  // User clicks on square show piece on Board
   $grid.on('click', 'div', function(event){
-    if(count % 2 === 0){
+
+    // Update turn
+    if(turn % 2 === 0){
       player = 'X';
     } else {
       player = 'O';
@@ -37,19 +37,21 @@ $(document).ready(function(){
     const gameState = game.makeMove(position.row,position.column,player);
     console.log(`row: ${position.row}, column: ${position.column}, Board: ${game.board}`);
 
-    // TODO: Display piece on board
+    // Display piece on board
     const $piece = $(`<div class="gamePiece ${player}"></div>`);
     $(this).append($piece);
 
-    count++;
+    turn++;
 
     if (gameState === 'Winner'){
       // console.log(`${player} won the game`);
       console.log(`You won the game`);
       // reset game
+      game.reset();
     } else if (gameState === 'Draw'){
       console.log(`Game over! It's a draw!`);
       // reset game
+      game.reset();
     } else if (gameState === 'Invalid') {
       console.log('Illegal move');
     } else {
@@ -65,9 +67,4 @@ $(document).ready(function(){
 
     return {row: rowPosition, column: columnPosition};
   } // getGridElementsPosition()
-
-
-
-  // TODO: Update gameboard & state
-
 });
