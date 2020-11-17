@@ -7,17 +7,28 @@ const game = {
   // Game Board
   board: [],
 
-  rows: Array(this.gridSize).fill(0),
-  columns: Array(this.gridSize).fill(0),
+  rows: null,
+  columns: null,
   positiveDiagonal: 0,
   negativeDiagonal: 0,
 
   setup: function(size){
     this.gridSize = size;
+
+    // Reset board
+    this.board.length = 0;
+
     // Set up board
     for (let i = 0; i < this.gridSize; i++){
-      this.board.push(Array(this.gridSize).fill(0));
+      this.board.push(new Array(this.gridSize).fill(0));
     }
+
+    // Set up rows and columns
+    this.rows = new Array(3).fill(0)
+    this.columns = new Array(3).fill(0)
+
+    positiveDiagonal = 0;
+    negativeDiagonal = 0;
   }, // setupGame()
 
   isIdentical: function(array){
@@ -48,7 +59,7 @@ const game = {
       }
     // Check if won across Column
     } else if (this.columns[column] === this.gridSize){
-        for (let i = 0; i < this.columns.length; i++){
+        for (let i = 0; i < this.gridSize; i++){
           comparisonString.push(this.board[i][column]);
         }
       if (this.isIdentical(comparisonString)){
@@ -114,34 +125,26 @@ const game = {
   }, // makeMove()
 
   reset: function(){
-    // Game Board
-    this.board.length = 0;
     this.setup(this.gridSize);
-
-    rows =  Array(this.gridSize).fill(0);
-    columns = Array(this.gridSize).fill(0);
-    positiveDiagonal = 0;
-    negativeDiagonal = 0;
   }, // reset()
 }; // game
-
-
 
 const runTests = function(){
 game.setup(3);
   // Row 0 Win
-  console.log(game.makeMove(0,0,'X'));
-  console.log(game.makeMove(0,1,'X'));
-  console.log(game.makeMove(0,2,'X'));
+  // console.log(game.makeMove(0,0,'X'));
+  // console.log(game.makeMove(0,1,'X'));
+  // console.log(game.makeMove(0,2,'X'));
 
   // Row 2 Win
   // makeMove(2,0,'X');
   // makeMove(2,1,'X');
   // makeMove(2,2,'X');
+
   // Column Win
-  // makeMove(0,2,'X');
-  // makeMove(1,2,'X');
-  // makeMove(2,2,'X');
+  console.log(game.makeMove(0,2,'X'));
+  console.log(game.makeMove(1,2,'X'));
+  console.log(game.makeMove(2,2,'X'));
 
   // // Diagonal -> Win
   // game.makeMove(0,0,'X');
