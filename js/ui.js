@@ -19,6 +19,9 @@ $(document).ready(function(){
   }
 
   // TODO: User clicks on square show piece on Board
+  $grid.on('click', function(){
+    alert(event.srcElement.id);
+  })
   // TODO: Update gameboard & state
 
 });
