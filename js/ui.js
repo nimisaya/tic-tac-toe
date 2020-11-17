@@ -1,4 +1,9 @@
 
+let player = `X`;
+let count = 0;
+
+
+
 
 $(document).ready(function(){
 
@@ -10,6 +15,7 @@ $(document).ready(function(){
 
   const $grid = $('#grid');
 
+
   // Display the gameboard
   // Add grid squares to HTML based on game size
   for (let i = 0; i < (Math.pow(size, 2)); i++){
@@ -20,9 +26,22 @@ $(document).ready(function(){
 
   // TODO: User clicks on square show piece on Board
   $grid.on('click', 'div', function(event){
+    if(count % 2 === 0){
+      player = 'X';
+    } else {
+      player = 'O';
+    }
+
     const position = getGridElementsPosition($(this).index());
-    const gameState = game.makeMove(position.row,position.column,'X');
-    console.log(`row: ${position.row}, column: ${position.column}, Board: ${game.board}`)
+
+    const gameState = game.makeMove(position.row,position.column,player);
+    console.log(`row: ${position.row}, column: ${position.column}, Board: ${game.board}`);
+
+    // TODO: Display piece on board
+    const $piece = $(`<div class="gamePiece ${player}"></div>`);
+    $(this).append($piece);
+
+    count++;
 
     if (gameState === 'Winner'){
       // console.log(`${player} won the game`);
@@ -36,7 +55,6 @@ $(document).ready(function(){
     } else {
       // Next turn
     }
-
   }); // $grid.on click
 
   function getGridElementsPosition(index){
