@@ -169,4 +169,4 @@ game.setup(3);
   console.log(game.board);
 }
 
-runTests();
+// runTests();
