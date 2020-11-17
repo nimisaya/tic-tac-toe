@@ -115,6 +115,7 @@ const game = {
 
   reset: function(){
     // Game Board
+    this.board.length = 0;
     this.setup(this.gridSize);
 
     rows =  Array(this.gridSize).fill(0);
