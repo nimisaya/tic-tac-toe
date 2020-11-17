@@ -21,8 +21,6 @@
 }
 
 body {
-
-
   height: 100vh;
 
   background-color: var(--main-background-colour);
@@ -86,13 +84,13 @@ main {
 }
 
 /* Noughts */
-.noughts {
+.O {
   border-radius: 50%;
   background-color: var(--test-colour);
 }
 
 /* Crosses */
-.crosses {
+.X {
   background-color: blue;
   content: "\274c";
 }
