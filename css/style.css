@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
 :root {
   /* Colours */
   --test-colour: hotpink; /* Used when undecided or experimenting */
-  --main-background-colour: #EBEBEB;
+  --main-background-colour: #FFBE3F;
+;
   --board-colour: white;
-  --grid-colour: hotpink;
+  --grid-colour: dimgrey;
 
   /* Dimensions */
   --num-rows-cols: 3;
@@ -11,9 +15,9 @@
 
 
 * {
-  border: 1px solid blue;
-  margin: 0;
-  padding: 0;
+  /* border: 1px solid blue; */
+  /* margin: 0;
+  padding: 0; */
 
   -webkit-box-sizing: border-box;
    -moz-box-sizing: border-box;
@@ -21,8 +25,16 @@
 }
 
 body {
+
+  line-height: 28px;
+
   height: 100vh;
 
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+
+
+/* background: linear-gradient(180deg, #002142 0%, #000C17 100%); */
   background-color: var(--main-background-colour);
 
   display: grid;
@@ -36,6 +48,25 @@ body {
 /* Header */
 header {
   grid-area: "header";
+  margin: 0 auto;
+  text-align: center;
+
+
+/* line-height: 48px; */
+
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
+}
+
+header > h1{
+    /* margin-top: 64px; */
+  font-size: 48px;
+  font-family: 'Fredoka One', Helvetica, sans-serif;
+  /* line-height: 64px; */
+  color: white;
+   /* -webkit-text-stroke: 0.5px #011F3E; */
 }
 
 main {
@@ -46,53 +77,81 @@ main {
 #gameBoard {
   margin: 0 auto;
 
-  width: 60vh;
-  height: 60vh;
+  width: 80vh;
+  height: 65vh;
 
-  background-color: var(--board-colour);
+  /* background-color: var(--board-colour);
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 48px; */
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Game grid */
 #grid {
-  height: 100%;
+  width: 60vh;
+  height: 60vh;
+
   display: grid;
   grid-template-columns: repeat(var(--num-rows-cols), 1fr);
   grid-template-rows: repeat(var(--num-rows-cols), 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+  grid-column-gap: 4px;
+  grid-row-gap: 4px;
 }
 
 .gridSquare {
-  padding: 8px 4px;
+  /* padding: 8px 4px; */
 
   /* TODO: Make border different based on position e.g. square 0,0 should have border-bottom and border-right */
-  border-left: 1px solid var(--grid-colour);
-  border-bottom: 1px solid var(--grid-colour);
+  /* border-left: 1px solid var(--grid-colour);
+  border-bottom: 1px solid var(--grid-colour); */
+  background-color: #011F3E;
+  border: 4px solid white;
+  border-radius: 24px;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
 }
 
 .gridSquare:hover {
-  background-color: var(--test-colour);
+  background-color: #FFBE3F;
+  background-image: url("../images/Chicken-Transparent.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  /* border: 24px solid white;
+  border-radius: 48px; */
 }
 
 /* Game pieces */
 .gamePiece {
   /* height: height of square - padding */
-  height: 100px;
+  /* border: 4px solid #011F3E; */
+  border-radius: 12px;
+  height: 100%;
   /* width: width of square - padding */
-  width: 100px;
-
+  /* width: 100vh; */
 }
 
 /* Noughts */
 .O {
-  border-radius: 50%;
-  background-color: var(--test-colour);
+  /* border-radius: 50%; */
+  background-image: url("../images/Chicken-Transparent.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  background-color: white;
 }
 
 /* Crosses */
 .X {
-  background-color: blue;
-  content: "\274c";
+  background-image: url("../images/Egg-Transparent.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  background-color: white;
+  /* content: "\274c"; */
 }
 
 .reset{
@@ -104,4 +163,9 @@ main {
 
 footer {
   grid-area: "footer";
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
