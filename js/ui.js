@@ -64,13 +64,13 @@ $(document).ready(function(){
       console.log(`You won the game`);
 
       // reset game
-      $grid.append($resetButton);
+      $('main').append($resetButton);
 
     } else if (gameState === 'Draw'){
       console.log(`Game over! It's a draw!`);
 
       // reset game
-      $grid.append($resetButton);
+      $('main').append($resetButton);
 
     } else if (gameState === 'Invalid') {
       console.log('Illegal move');

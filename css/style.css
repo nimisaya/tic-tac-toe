@@ -95,6 +95,10 @@ main {
   content: "\274c";
 }
 
+.reset{
+  width: 400px;
+}
+
 /* Winner indication */
 /* Draw indication */
 
