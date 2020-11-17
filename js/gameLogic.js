@@ -1,7 +1,7 @@
 const game = {
 
   // Game will be 3 x 3
-  gridSize: 3,
+  gridSize: 0,
 
   // Game Board
   board: [],
@@ -11,7 +11,10 @@ const game = {
   positiveDiagonal: 0,
   negativeDiagonal: 0,
 
-  setup: function(){
+  setup: function(size){
+    // Set grid size
+    this.gridSize = size;
+
     // Set up board
     for (let i = 0; i < this.gridSize; i++){
       this.board.push(Array(this.gridSize).fill(0));
@@ -110,7 +113,7 @@ const game = {
 
 
 const runTests = function(){
-game.setup();
+game.setup(3);
   // Row 0 Win
   // makeMove(0,0,'X');
   // makeMove(0,1,'X');
