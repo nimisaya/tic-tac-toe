@@ -99,15 +99,11 @@ const makeMove = function(row, column, player){
     negativeDiagonal++;
   }
 
-const gameState = checkGameState(row, column, player);
-if (gameState !== null){
-  return gameState;
-}
-
-
-
-
-}
+  const gameState = checkGameState(row, column, player);
+  if (gameState !== null){
+    return gameState;
+  }
+}; // makeMove()
 
 const runTests = function(){
 setupGame();
