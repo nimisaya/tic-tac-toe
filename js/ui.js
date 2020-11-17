@@ -16,12 +16,27 @@ $(document).ready(function(){
     let $square = $(`<div class="gridSquare" id="square${[i]}"></div>`);
     // Add within grid
     $grid.append($square);
-  }
+  } // for
 
   // TODO: User clicks on square show piece on Board
   $grid.on('click', 'div', function(event){
     const position = getGridElementsPosition($(this).index());
-    game.makeMove(position.row,position.column,'X')
+    const gameState = game.makeMove(position.row,position.column,'X');
+    console.log(`row: ${position.row}, column: ${position.column}, Board: ${game.board}`)
+
+    if (gameState === 'Winner'){
+      // console.log(`${player} won the game`);
+      console.log(`You won the game`);
+      // reset game
+    } else if (gameState === 'Draw'){
+      console.log(`Game over! It's a draw!`);
+      // reset game
+    } else if (gameState === 'Invalid') {
+      console.log('Illegal move');
+    } else {
+      // Next turn
+    }
+
   }); // $grid.on click
 
   function getGridElementsPosition(index){
