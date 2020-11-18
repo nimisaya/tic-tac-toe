@@ -70,27 +70,22 @@ const reset = function(){
 
 // Menu: player chooses piece, vs. computer or human & gridsize
 $('.menuButton').on('click', function(){
-  console.log(this.id);
   if (this.id === 'chickenButton'){
     player = playerOne;
-    console.log(player);
     hideGamePieceOptions();
     showSecondPlayerOptions();
   } else if (this.id === 'eggButton'){
     player = playerTwo;
-    console.log(player);
     hideGamePieceOptions();
     showSecondPlayerOptions();
   } else if (this.id === 'humanButton'){
     // set player 2 as human
     playerTwoType = 'human';
-    console.log(`Player 2 is human`);
     hideSecondPlayerOptions();
     showGridOptions();
   } else if (this.id === 'computerButton'){
     // set player 2 as computer
     playerTwoType = 'computer';
-    console.log(`Player 2 is a computer`);
     hideSecondPlayerOptions();
     showGridOptions();
   } else if (this.id === 'gridThree'){
@@ -144,8 +139,6 @@ $grid.on('click', 'div', function(event){
   // Update move
   if ((gameState === 'Continue')|| (gameState === 'Invalid')){
     gameState = game.addMove(position.row, position.column, player);
-
-    // console.log(`row: ${position.row}, column: ${position.column}, Board: ${game.board}`);
   }
 
   switch (gameState) {
@@ -154,7 +147,6 @@ $grid.on('click', 'div', function(event){
       break;
     case 'Winner':
       $(this).append($piece);
-      console.log('Winner winner, chicken dinner');
       gameState = 'GameOver';
 
       if(player === playerOne){
