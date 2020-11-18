@@ -7,10 +7,17 @@ const game = {
   // Game Board
   board: [],
 
+  count: 0,
+  totalGridPoints: 0,
+
   rows: null,
   columns: null,
   positiveDiagonal: 0,
   negativeDiagonal: 0,
+
+  calculateTotalGridPoints: function(size){
+    this.totalGridPoints = 2 * Math.pow(size, 2) + 2 * size;
+  },
 
   start: function(size, playerOne, playerTwoType){
     this.gridSize = size;
@@ -30,6 +37,9 @@ const game = {
     this.positiveDiagonal = 0;
     this.negativeDiagonal = 0;
 
+    // Calculate grid points in game board (rows^2 + columns^2 + positiveDiagonal + negativeDiagonal )
+    this.calculateTotalGridPoints(size);
+
     console.log(`Game is ${size} by ${size}. Player one is ${playerOne}. Player two type is ${playerTwoType}`);
     console.log(this.board);
     console.log(this.rows);
@@ -47,59 +57,61 @@ const game = {
   }, // isIdentical()
 
   checkGameState: function(row, column, player){
-    const comparisonString = [];
+    const comparisonArray = [];
 
     // Check if won across Row
     if(this.rows[row] === this.gridSize){
 
       for (let i = 0; i < this.gridSize; i++){
-        comparisonString.push(this.board[row][i]);
+        comparisonArray.push(this.board[row][i]);
       }// for
 
-      if (this.isIdentical(comparisonString)){
+      if (this.isIdentical(comparisonArray)){
         return `Winner`;
       } else {
-        comparisonString.length = 0;
+        comparisonArray.length = 0;
       }
     // Check if won across Column
     } else if (this.columns[column] === this.gridSize){
         for (let i = 0; i < this.gridSize; i++){
-          comparisonString.push(this.board[i][column]);
+          comparisonArray.push(this.board[i][column]);
         }
-      if (this.isIdentical(comparisonString)){
+      if (this.isIdentical(comparisonArray)){
         return `Winner`;
       } else {
-        comparisonString.length = 0;
+        comparisonArray.length = 0;
       }
     // Check if won on positive diagonal
-  } else if (this.positiveDiagonal === this.gridSize){
+    } else if (this.positiveDiagonal === this.gridSize){
       for (let i = 0; i < this.gridSize; i++){
-        comparisonString.push(this.board[i][i]);
+        comparisonArray.push(this.board[i][i]);
       }
-      if (this.isIdentical(comparisonString)){
+      if (this.isIdentical(comparisonArray)){
         return `Winner`;
       } else {
-        comparisonString.length = 0;
+        comparisonArray.length = 0;
       }
     // Check if won on negative diagonal
-  } else if (this.negativeDiagonal === this.gridSize){
+    } else if (this.negativeDiagonal === this.gridSize){
       let j = this.gridSize - 1;
       for (let i = 0; i < this.gridSize; i++){
-          comparisonString.push(this.board[i][j]);
+          comparisonArray.push(this.board[i][j]);
           j--;
       }
-      if (this.isIdentical(comparisonString)){
+      if (this.isIdentical(comparisonArray)){
         return `Winner`;
       } else {
-        comparisonString.length = 0;
+        comparisonArray.length = 0;
       }
     }
-    // Check if it is a draw
-    if (this.board.includes(0)){
+
+    if (this.count === this.totalGridPoints){
+      console.log(`count: ${this.count}, totalGridPoints: ${this.totalGridPoints} and it's a draw`);
       return `Draw`;
-    } else {
-      return 'Continue';
     }
+    console.log(`count: ${this.count}, totalGridPoints: ${this.totalGridPoints} so CONTINEU`);
+
+    return 'Continue';
   }, // checkGameState()
 
   addMove: function(row, column, player){
@@ -113,15 +125,19 @@ const game = {
 
     // Increment row / column / diagonal / neg diagonal counts
     this.rows[row]++;
+    this.count++;
 
     this.columns[column]++;
+    this.count++;
 
     if (row === column) {
       this.positiveDiagonal++;
+      this.count++;
     }
 
     if (row + column + 1 === this.gridSize){
       this.negativeDiagonal++;
+      this.count++;
     }
 
     // Update Game state
