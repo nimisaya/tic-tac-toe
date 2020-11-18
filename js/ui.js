@@ -108,7 +108,7 @@ $('.menuButton').on('click', function(){
 $grid.on('mouseenter', 'div', function(event){
   const squareID = `#${this.id}`;
 
-  if (squareID !== '#'){
+  if ((squareID !== '#') && (gameState !== 'GameOver')){
     if(player === 'X'){
       $(squareID).css({backgroundImage: `url(images/Chicken-Transparent.png)`, backgroundSize: `cover`});
     } else {
@@ -119,13 +119,8 @@ $grid.on('mouseenter', 'div', function(event){
 
 $grid.on('mouseleave', 'div', function(event){
   const squareID = `#${this.id}`;
-  if (squareID !== '#'){
-    if(player === 'X'){
+  if ((squareID !== '#') && (gameState !== 'GameOver')){
       $(squareID).css(`background-image`, `none`);
-      console.log(`Hovering on ${this.id}`);
-    } else {
-      $(squareID).css(`backgroundImage`, `none`);
-    }
   }
 }); // .gridSquare hover
 
