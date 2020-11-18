@@ -1,6 +1,8 @@
 let player;
 let playerTwoType; // Computer or human
 // let turn = 0;
+const playerOne = 'cross';
+const playerTwo = 'nought';
 
 let gridSize;
 let gameState = 'Continue';
@@ -70,12 +72,12 @@ const reset = function(){
 $('.menuButton').on('click', function(){
   console.log(this.id);
   if (this.id === 'chickenButton'){
-    player = 'X';
+    player = playerOne;
     console.log(player);
     hideGamePieceOptions();
     showSecondPlayerOptions();
   } else if (this.id === 'eggButton'){
-    player = 'O'
+    player = playerTwo;
     console.log(player);
     hideGamePieceOptions();
     showSecondPlayerOptions();
@@ -115,7 +117,7 @@ $grid.on('mouseenter', 'div', function(event){
   const squareID = `#${this.id}`;
 
   if ((squareID !== '#') && (gameState !== 'GameOver')){
-    if(player === 'X'){
+    if(player === playerOne){
       $(squareID).css({backgroundImage: `url(images/Chicken-Transparent.png)`, backgroundSize: `cover`});
     } else {
       $(squareID).css({backgroundImage: `url(images/Egg-Transparent.png)`, backgroundSize: `cover`});
@@ -155,7 +157,7 @@ $grid.on('click', 'div', function(event){
       console.log('Winner winner, chicken dinner');
       gameState = 'GameOver';
 
-      if(player === 'X'){
+      if(player === playerOne){
         $('#gameOverMessage').text(`Chicken wins!`);
       } else {
         $('#gameOverMessage').text(`Egg wins!`);
@@ -176,10 +178,10 @@ $grid.on('click', 'div', function(event){
   } // switch (gameState)
 
   // Update turn
-  if(player === 'X'){
-    player = 'O';
+  if(player === playerOne){
+    player = playerTwo;
   } else {
-    player = 'X';
+    player = playerOne;
   }
 }); // .grid clicked
 

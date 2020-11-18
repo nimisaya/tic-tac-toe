@@ -167,7 +167,7 @@ button:focus {
 }
 
 /* Eggs = Noughts */
-.O {
+.nought {
   background-image: var(--egg);
   background-repeat: no-repeat;
   background-position: center;
@@ -176,7 +176,7 @@ button:focus {
 }
 
 /* Chicken = Crosses */
-.X {
+.cross {
   background-image: var(--chicken);
   background-repeat: no-repeat;
   background-position: center;
