@@ -109,11 +109,14 @@ $grid.on('click', 'div', function(event){
 
   // Show move
   const $piece = $(`<div class="gamePiece ${player}"></div>`);
-  if (gameState !== 'Invalid'){
+  if (gameState === 'Invalid'){
+    console.log('Invalid move ya drongo');
+  } else {
     $(this).append($piece);
   }
 
   // Update game state
+
 
   // Update turn
   if(player === 'X'){

@@ -35,6 +35,73 @@ const game = {
     console.log(this.rows);
   }, // start()
 
+  isIdentical: function(array){
+    for(let i = 0; i < array.length - 1; i++) {
+      console.log(array[i] !== array[i + 1]);
+
+      if(array[i] !== array[i + 1]) {
+        return false;
+      }
+    } // for
+    return true;
+  }, // isIdentical()
+
+  checkGameState: function(row, column, player){
+    const comparisonString = [];
+
+    // Check if won across Row
+    if(this.rows[row] === this.gridSize){
+
+      for (let i = 0; i < this.gridSize; i++){
+        comparisonString.push(this.board[row][i]);
+      }// for
+
+      if (this.isIdentical(comparisonString)){
+        return `Winner`;
+      } else {
+        comparisonString.length = 0;
+      }
+    // Check if won across Column
+    } else if (this.columns[column] === this.gridSize){
+        for (let i = 0; i < this.gridSize; i++){
+          comparisonString.push(this.board[i][column]);
+        }
+      if (this.isIdentical(comparisonString)){
+        return `Winner`;
+      } else {
+        comparisonString.length = 0;
+      }
+    // Check if won on positive diagonal
+  } else if (this.positiveDiagonal === this.gridSize){
+      for (let i = 0; i < this.gridSize; i++){
+        comparisonString.push(this.board[i][i]);
+      }
+      if (this.isIdentical(comparisonString)){
+        return `Winner`;
+      } else {
+        comparisonString.length = 0;
+      }
+    // Check if won on negative diagonal
+  } else if (this.negativeDiagonal === this.gridSize){
+      let j = this.gridSize - 1;
+      for (let i = 0; i < this.gridSize; i++){
+          comparisonString.push(this.board[i][j]);
+          j--;
+      }
+      if (this.isIdentical(comparisonString)){
+        return `Winner`;
+      } else {
+        comparisonString.length = 0;
+      }
+    }
+    // Check if it is a draw
+    if (this.board.includes(0)){
+      return `Draw`
+    } else {
+      return 'Continue';
+    }
+  }, // checkGameState()
+
   addMove: function(row, column, player){
     // Ensure move is valid
     if ((this.board[row][column] !== 0)){
@@ -57,6 +124,10 @@ const game = {
       this.negativeDiagonal++;
     }
 
+    // Update Game state
+    const gameState = this.checkGameState(row, column, player);
+    console.log(gameState);
+    return gameState;
 
   }, // addMove()
 
