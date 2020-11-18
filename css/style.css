@@ -195,6 +195,7 @@ button:focus {
 }
 
 #resetButton {
+  display: none;
   margin: 24px;
   padding: 12px;
   font-size: 24px;

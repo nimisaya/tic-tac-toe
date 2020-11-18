@@ -59,13 +59,14 @@ const startGame = function(size){
 
 // Reset game
 const reset = function(){
+  $('#resetButton').css('display', 'none');
   gameState = 'Continue';
   $grid.children().remove();
   $('#gameOverMessage').text(``);
   startGame(gridSize);
 }; // reset()
 
-// Assign game pieces, set player 2 type and set grid size
+// Menu: player chooses piece, vs. computer or human & gridsize
 $('.menuButton').on('click', function(){
   console.log(this.id);
   if (this.id === 'chickenButton'){
@@ -104,6 +105,30 @@ $('.menuButton').on('click', function(){
   }
 }); // .menuButton clicked
 
+$grid.on('mouseenter', 'div', function(event){
+  const squareID = `#${this.id}`;
+
+  if (squareID !== '#'){
+    if(player === 'X'){
+      $(squareID).css({backgroundImage: `url(images/Chicken-Transparent.png)`, backgroundSize: `cover`});
+    } else {
+      $(squareID).css({backgroundImage: `url(images/Egg-Transparent.png)`, backgroundSize: `cover`});
+    }
+  }
+}); // .gridSquare hover
+
+$grid.on('mouseleave', 'div', function(event){
+  const squareID = `#${this.id}`;
+  if (squareID !== '#'){
+    if(player === 'X'){
+      $(squareID).css(`background-image`, `none`);
+      console.log(`Hovering on ${this.id}`);
+    } else {
+      $(squareID).css(`backgroundImage`, `none`);
+    }
+  }
+}); // .gridSquare hover
+
 // User makes move
 $grid.on('click', 'div', function(event){
 
@@ -134,11 +159,13 @@ $grid.on('click', 'div', function(event){
       } else {
         $('#gameOverMessage').text(`Egg wins!`);
       }
+      $('#resetButton').css('display', 'inline-block');
       break;
     case 'Draw':
       $(this).append($piece);
       gameState = 'GameOver';
-      $('#gameOverMessage').text(`It's a draw!`)
+      $('#gameOverMessage').text(`It's a draw!`);
+      $('#resetButton').css('display', 'inline-block');
       break;
     case 'Continue':
       $(this).append($piece);
@@ -153,7 +180,6 @@ $grid.on('click', 'div', function(event){
   } else {
     player = 'X';
   }
-
 }); // .grid clicked
 
 $('#resetButton').on('click', reset);
