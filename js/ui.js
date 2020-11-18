@@ -3,6 +3,7 @@ let playerTwoType; // Computer or human
 // let turn = 0;
 
 let gridSize;
+let gameState = 'Continue';
 
 // GAME
 // Retrieve grid
@@ -95,6 +96,10 @@ $('.menuButton').on('click', function(){
   }
 }); // .menuButton clicked
 
+// const updateGame = function(index){
+//
+// }, // updateGame
+
 
 // User makes move
 $grid.on('click', 'div', function(event){
@@ -102,18 +107,37 @@ $grid.on('click', 'div', function(event){
   // Get square user selected
   const position = getGridElementsPosition($(this).index());
 
-  // Update move
-  const gameState = game.addMove(position.row, position.column, player);
-
-  console.log(`row: ${position.row}, column: ${position.column}, Board: ${game.board}`);
-
   // Show move
   const $piece = $(`<div class="gamePiece ${player}"></div>`);
-  if (gameState === 'Invalid'){
-    console.log('Invalid move ya drongo');
-  } else {
-    $(this).append($piece);
+
+  // Update move
+  if ((gameState === 'Continue')|| (gameState === 'Invalid')){
+    gameState = game.addMove(position.row, position.column, player);
+
+    console.log(`row: ${position.row}, column: ${position.column}, Board: ${game.board}`);
   }
+
+  switch (gameState) {
+    case 'Invalid':
+      console.log('Invalid move ya drongo');
+      break;
+    case 'Winner':
+      $(this).append($piece);
+      console.log('Winner winner, chicken dinner');
+      gameState = 'GameOver';
+      break;
+    case 'Draw':
+      $(this).append($piece);
+      gameState = 'GameOver';
+      console.log('Draw a cat');
+      break;
+    case 'Continue':
+      console.log(`It's a legal move`);
+      $(this).append($piece);
+      break;
+    default:
+      console.log('GAME OVER');
+  } // switch
 
   // Update game state
 
