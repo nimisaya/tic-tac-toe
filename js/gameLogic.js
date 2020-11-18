@@ -4,6 +4,8 @@ const game = {
   // Game size default 3
   gridSize: 3,
 
+  // player: '',
+
   // Game Board
   board: [],
 
@@ -21,10 +23,11 @@ const game = {
 
   start: function(size, playerOne, playerTwoType){
     this.gridSize = size;
-    this.player = playerOne;
+    // this.player = playerOne;
 
     // Reset board
     this.board.length = 0;
+    this.count = 0;
 
     // Set up board
     for (let i = 0; i < size; i++){
@@ -39,15 +42,10 @@ const game = {
 
     // Calculate grid points in game board (rows^2 + columns^2 + positiveDiagonal + negativeDiagonal )
     this.calculateTotalGridPoints(size);
-
-    console.log(`Game is ${size} by ${size}. Player one is ${playerOne}. Player two type is ${playerTwoType}`);
-    console.log(this.board);
-    console.log(this.rows);
   }, // start()
 
   isIdentical: function(array){
     for(let i = 0; i < array.length - 1; i++) {
-      console.log(array[i] !== array[i + 1]);
 
       if(array[i] !== array[i + 1]) {
         return false;
@@ -71,8 +69,9 @@ const game = {
       } else {
         comparisonArray.length = 0;
       }
+    }
     // Check if won across Column
-    } else if (this.columns[column] === this.gridSize){
+    if (this.columns[column] === this.gridSize){
         for (let i = 0; i < this.gridSize; i++){
           comparisonArray.push(this.board[i][column]);
         }
@@ -81,8 +80,9 @@ const game = {
       } else {
         comparisonArray.length = 0;
       }
+    }
     // Check if won on positive diagonal
-    } else if (this.positiveDiagonal === this.gridSize){
+    if (this.positiveDiagonal === this.gridSize){
       for (let i = 0; i < this.gridSize; i++){
         comparisonArray.push(this.board[i][i]);
       }
@@ -91,8 +91,9 @@ const game = {
       } else {
         comparisonArray.length = 0;
       }
+    }
     // Check if won on negative diagonal
-    } else if (this.negativeDiagonal === this.gridSize){
+    if (this.negativeDiagonal === this.gridSize){
       let j = this.gridSize - 1;
       for (let i = 0; i < this.gridSize; i++){
           comparisonArray.push(this.board[i][j]);
@@ -104,12 +105,10 @@ const game = {
         comparisonArray.length = 0;
       }
     }
-
+    // Check for a draw
     if (this.count === this.totalGridPoints){
-      console.log(`count: ${this.count}, totalGridPoints: ${this.totalGridPoints} and it's a draw`);
       return `Draw`;
     }
-    console.log(`count: ${this.count}, totalGridPoints: ${this.totalGridPoints} so CONTINEU`);
 
     return 'Continue';
   }, // checkGameState()
@@ -142,7 +141,6 @@ const game = {
 
     // Update Game state
     const gameState = this.checkGameState(row, column, player);
-    console.log(gameState);
     return gameState;
 
   }, // addMove()
