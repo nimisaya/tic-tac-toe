@@ -57,6 +57,14 @@ const startGame = function(size){
   showGameBoard(size);
 }; // startGame()
 
+// Reset game
+const reset = function(){
+  gameState = 'Continue';
+  $grid.children().remove();
+  $('#gameOverMessage').text(``);
+  startGame(gridSize);
+}; // reset()
+
 // Assign game pieces, set player 2 type and set grid size
 $('.menuButton').on('click', function(){
   console.log(this.id);
@@ -96,11 +104,6 @@ $('.menuButton').on('click', function(){
   }
 }); // .menuButton clicked
 
-// const updateGame = function(index){
-//
-// }, // updateGame
-
-
 // User makes move
 $grid.on('click', 'div', function(event){
 
@@ -114,7 +117,7 @@ $grid.on('click', 'div', function(event){
   if ((gameState === 'Continue')|| (gameState === 'Invalid')){
     gameState = game.addMove(position.row, position.column, player);
 
-    console.log(`row: ${position.row}, column: ${position.column}, Board: ${game.board}`);
+    // console.log(`row: ${position.row}, column: ${position.column}, Board: ${game.board}`);
   }
 
   switch (gameState) {
@@ -129,26 +132,20 @@ $grid.on('click', 'div', function(event){
       if(player === 'X'){
         $('#gameOverMessage').text(`Chicken wins!`);
       } else {
-        $('#gameOverMessage').text(`Egg wins`);
+        $('#gameOverMessage').text(`Egg wins!`);
       }
       break;
     case 'Draw':
       $(this).append($piece);
       gameState = 'GameOver';
       $('#gameOverMessage').text(`It's a draw!`)
-      console.log('Draw a cat');
       break;
     case 'Continue':
-      console.log(`It's a legal move`);
       $(this).append($piece);
       break;
     default:
       console.log('GAME OVER');
   } // switch (gameState)
-
-  // Update game state
-
-
 
   // Update turn
   if(player === 'X'){
@@ -159,15 +156,7 @@ $grid.on('click', 'div', function(event){
 
 }); // .grid clicked
 
-// Game over
-
-// Display game over information
-
-
-// Reset game
-const reset = function(){
-  turn = 0;
-}
+$('#resetButton').on('click', reset);
 
 function getGridElementsPosition(index){
   const numColumns = $grid.css('grid-template-columns').split(' ').length;
