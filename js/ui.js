@@ -93,17 +93,23 @@ $('.menuButton').on('click', function(){
     showGridOptions();
   } else if (this.id === 'gridThree'){
     gridSize = 3;
-    startGame(3);
+    startGame(gridSize);
   } else if (this.id === 'gridFour'){
-    startGame(4);
+    gridSize = 4;
+    startGame(gridSize);
   } else if (this.id === 'gridFive') {
-    startGame(5);
+    gridSize = 5;
+    startGame(gridSize);
   } else if (this.id === 'gridSix'){
-    startGame(6);
+    gridSize = 6;
+    startGame(gridSize);
   } else {
     console.log('Error: no id assigned to button');
   }
 }); // .menuButton clicked
+
+
+// GAME PLAY
 
 $grid.on('mouseenter', 'div', function(event){
   const squareID = `#${this.id}`;
