@@ -125,10 +125,17 @@ $grid.on('click', 'div', function(event){
       $(this).append($piece);
       console.log('Winner winner, chicken dinner');
       gameState = 'GameOver';
+
+      if(player === 'X'){
+        $('#gameOverMessage').text(`Chicken wins!`);
+      } else {
+        $('#gameOverMessage').text(`Egg wins`);
+      }
       break;
     case 'Draw':
       $(this).append($piece);
       gameState = 'GameOver';
+      $('#gameOverMessage').text(`It's a draw!`)
       console.log('Draw a cat');
       break;
     case 'Continue':
@@ -137,9 +144,10 @@ $grid.on('click', 'div', function(event){
       break;
     default:
       console.log('GAME OVER');
-  } // switch
+  } // switch (gameState)
 
   // Update game state
+
 
 
   // Update turn

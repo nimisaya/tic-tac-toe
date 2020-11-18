@@ -188,6 +188,12 @@ button:focus {
   background-color: var(--prominant-yellow);
 }
 
+#gameOverMessage {
+  font-family: var(--heading-font);
+  font-size: 48px;
+  color: var(--dark-blue);
+}
+
 footer {
   grid-area: "footer";
   margin: 0 auto;

@@ -96,7 +96,7 @@ const game = {
     }
     // Check if it is a draw
     if (this.board.includes(0)){
-      return `Draw`
+      return `Draw`;
     } else {
       return 'Continue';
     }
