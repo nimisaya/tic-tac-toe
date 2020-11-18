@@ -4,26 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Tic Tac Toe</title>
+  <title>Egg, Yolk, Chicken - Evolution of Tic Tac Toe</title>
   <link rel="stylesheet" href="css/style.css">
-  <script src="js/jquery.js"></script>
-  <script src="js/gameLogic.js"></script>
-  <script src="js/ui.js"></script>
 </head>
 <body>
   <header>
-    <!-- Game title and instructions -->
-    <h1>Egg, yolk, chicken</h1>
-    <!-- <p>Classic tic tac toe reimagined.</p> -->
-    <p>Who came first, the chicken or the egg?</p>
+    <h1>Egg, Yolk, Chicken</h1>
+    <p></p>
   </header>
   <main>
-    <!-- Draw gameboard -->
-    <div id="gameBoard">
-      <!-- Draw grid -->
-      <div id="grid"></div>
+    <!-- Game options -->
+    <div id="menu">
+      <p id="menuQuestion">Choose player 1:</p>
+      <div id="pieceSelection">
+        <button class="menuButton" id="chickenButton"></button>
+        <button class="menuButton" id="eggButton" ></button>
+      </div>
+      <div id="playerTwoSelection">
+        <button class="menuButton" id="humanButton">Human</button>
+        <button class="menuButton" id="computerButton">Computer</button>
+      </div>
+      <div id='gridMenu'>
+        <button class="menuButton gridButton" id="gridThree">3 x 3</button>
+        <button class="menuButton gridButton" id="gridFour">4 x 4</button>
+        <button class="menuButton gridButton" id="gridFive">5 x 5</button>
+        <button class="menuButton gridButton" id="gridFive">6 x 6</button>
+      </div>
+      <h2>How to play</h2>
+      <p id="instructions">Tic Tac Toe with a twist. Play as Chicken 'X' or Egg '0' to solve the age old question of who came first.</p>
+    </div>
+
+    <div id="game">
+      <div id="grid">
+        <!-- Game Squares generated in JavaScript -->
+      </div>
     </div>
   </main>
-  <footer>Footer</footer>
+  <footer></footer>
+  <script src="js/jquery.js" charset="utf-8"></script>
+  <script src="js/ui.js" charset="utf-8"></script>
 </body>
 </html>

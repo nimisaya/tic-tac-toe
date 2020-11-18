@@ -1,93 +1,107 @@
-
-let player = `X`;
+let player;
+let playerTwoType = 'human'; // Computer or human
 let turn = 0;
 
+let gridSize = 3;
 
+const showMenu = function(){
+  $('#menu').css('display', 'block');
+}; // displayGamePieceOptions()
 
+const showSecondPlayerOptions = function(){
+  $('#playerTwoSelection').css('display', 'block');
+  $('#menuQuestion').text('Are you playing a human or computer?');
+}; // showSecondPlayerOptions()
 
-$(document).ready(function(){
+const showGridOptions = function(){
+  $('.gridButton').css('display', 'inline-block');
+    $('#menuQuestion').text('What size grid?');
+}
 
+const hideGamePieceOptions = function(){
+  console.log('Hide game pieces');
+  $('#pieceSelection').css('display', 'none');
+}; // displayGamePieceOptions()
 
-  // Set the board size
-  const size = 3; // 3x3
+const hideSecondPlayerOptions = function(){
+  $('#playerTwoSelection').css('display', 'none');
+}; // displayGamePieceOptions()
 
-  // Create game
-  game.setup(size);
+const hideMenu = function(){
+  $('#menu').css('display', 'none');
+}; // hideMenu()
 
-  // Create grid
-  const $grid = $('#grid');
+const showGame = function(){
 
-  const $resetButton = $(`<button class="reset"></button>`);
-  $resetButton.html('Play again');
+}; // showGame()
 
-  let $square;
-
-  const reset = function(){
-    game.reset();
-    $('.gridSquare').children().remove();
-    console.log("Game was reset")
+// Assign game pieces, set player 2 type and set grid size
+$('.menuButton').on('click', function(){
+  console.log(this.id);
+  if (this.id === 'chickenButton'){
+    player = 'X';
+    console.log(player);
+    hideGamePieceOptions();
+    showSecondPlayerOptions();
+  } else if (this.id === 'eggButton'){
+    player = 'O'
+    console.log(player);
+    showSecondPlayerOptions();
+  } else if (this.id === 'humanButton'){
+    // set player 2 as human
+    playerTwoType = 'computer';
+    console.log(`Player 2 is human`);
+    hideSecondPlayerOptions();
+    showGridOptions();
+  } else if (this.id === 'computerButton'){
+    // set player 2 as computer
+    playerTwoType = 'computer';
+    console.log(`Player 2 is a computer`);
+    hideSecondPlayerOptions();
+    showGridOptions();
+  } else if (this.id === 'gridThree'){
+    gridSize = 3;
+    hideMenu();
+    showGame();
+  } else if (this.id === 'gridFour'){
+    gridSize = 4;
+    hideMenu();
+    showGame();
+  } else if (this.id === 'gridFive') {
+    gridSize = 5
+    hideMenu();
+    showGame();
+  } else if (this.id === 'gridSix'){
+    gridSize == 6;
+    hideMenu();
+    showGame();
+  } else {
+    console.log('Error: no id assigned to button');
   }
 
-  // Display the gameboard
-  // Add grid squares to HTML based on game size
-  for (let i = 0; i < (Math.pow(size, 2)); i++){
-    $square = $(`<div class="gridSquare" id="square${[i]}"></div>`);
-    // Add within grid
-    $grid.append($square);
-  } // for
+  console.log(`Player 1 is ${player}, player 2 is ${playerTwoType}, Grid size is ${gridSize}`);
+}); // .menuButton clicked
 
-  // User clicks on square show piece on Board
-  $grid.on('click', 'div', function(event){
+// Hide piece selection buttons
 
-    // Update turn
-    if(turn % 2 === 0){
-      player = 'X';
-    } else {
-      player = 'O';
-    }
-
-    const position = getGridElementsPosition($(this).index());
-
-    const gameState = game.makeMove(position.row,position.column,player);
-    // console.log(`row: ${position.row}, column: ${position.column}, Board: ${game.board}`);
-
-    // Display piece on board
-    const $piece = $(`<div class="gamePiece ${player}"></div>`);
-    if (gameState !== 'Invalid'){
-      $(this).append($piece);
-    }
-
-    turn++;
-
-    if (gameState === 'Winner'){
-      // console.log(`${player} won the game`);
-      console.log(`You won the game`);
-
-      // reset game
-      $('main').append($resetButton);
-
-    } else if (gameState === 'Draw'){
-      console.log(`Game over! It's a draw!`);
-
-      // reset game
-      $('main').append($resetButton);
-
-    } else if (gameState === 'Invalid') {
-      console.log('Illegal move');
-    } else {
-      // Next turn
-    }
-  }); // $grid.on click
+// Display player 2: human or computer buttons
 
 
-  $resetButton.on('click', reset);
+// Set player 2 type
 
-  function getGridElementsPosition(index){
-    const numColumns = $grid.css('grid-template-columns').split(' ').length;
 
-    const rowPosition = Math.floor(index / numColumns);
-    const columnPosition = index % numColumns;
+// Hide menu
 
-    return {row: rowPosition, column: columnPosition};
-  } // getGridElementsPosition()
-});
+// Set grid size
+
+
+// Display gameBoard
+
+// User makes move
+
+// Game over
+
+// Display game over information
+
+
+// Reset game
