@@ -10,7 +10,7 @@
 <body>
   <header>
     <h1>Egg, Yolk, Chicken</h1>
-    <p></p>
+    <p id="instructions">Tic Tac Toe with a twist. Play as Chicken 'X' or Egg '0' to solve the age old question of who came first.</p>
   </header>
   <main>
     <!-- Game options -->
@@ -25,13 +25,13 @@
         <button class="menuButton" id="computerButton">Computer</button>
       </div>
       <div id='gridMenu'>
-        <button class="menuButton gridButton" id="gridThree">3 x 3</button>
-        <button class="menuButton gridButton" id="gridFour">4 x 4</button>
-        <button class="menuButton gridButton" id="gridFive">5 x 5</button>
-        <button class="menuButton gridButton" id="gridSix">6 x 6</button>
+          <button class="menuButton gridButton" id="gridThree">3 x 3</button>
+          <button class="menuButton gridButton" id="gridFour">4 x 4</button>
+          <div class="desktopGridOptions">
+            <button class="menuButton gridButton" id="gridFive">5 x 5</button>
+            <button class="menuButton gridButton" id="gridSix">6 x 6</button>
+          </div>
       </div>
-      <h2>How to play</h2>
-      <p id="instructions">Tic Tac Toe with a twist. Play as Chicken 'X' or Egg '0' to solve the age old question of who came first.</p>
     </div>
 
     <div id="game">
@@ -39,10 +39,12 @@
         <!-- Game Squares generated in JavaScript -->
       </div>
     </div>
-    <div id="gameOverMessage"></div>
+    <h2 id="gameOverMessage"></h2>
     <button id="resetButton">Play again</button>
   </main>
-  <footer></footer>
+  <footer>
+    <p><small>© Amanda Jarvinen, 2020</small></p>
+  </footer>
   <script src="js/jquery.js" charset="utf-8"></script>
   <script src="js/gameLogic.js" charset="utf-8"></script>
   <script src="js/ui.js" charset="utf-8"></script>
