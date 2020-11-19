@@ -4,8 +4,6 @@ const game = {
   // Game size default 3
   gridSize: 3,
 
-  // player: '',
-
   // Game Board
   board: [],
 
@@ -144,7 +142,6 @@ const game = {
     // Update Game state
     gameState = this.checkGameState(row, column, player);
     return gameState;
-
   }, // addMove()
 
   generateRandomInt: function(min, max){
@@ -159,14 +156,8 @@ const game = {
     do {
       rowPosition = this.generateRandomInt(0, gridSize - 1);
       columnPosition = this.generateRandomInt(0, gridSize - 1);
-      console.log('Computer tried same move');
     } while (this.board[rowPosition][columnPosition] !== 0)
 
-    // if (this.board[rowPosition][columnPosition] !== 0){
-    //   this.getComputerPosition();
-    // } else {
-      return {row: rowPosition, column: columnPosition};
-    // }
-
+    return {row: rowPosition, column: columnPosition};
   }, // getComputerPosition()
 }; // game

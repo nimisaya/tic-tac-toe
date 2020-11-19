@@ -7,6 +7,8 @@ const playerTwo = 'nought';
 let gridSize;
 let gameState = 'Continue';
 
+const computer = 'computer';
+
 // GAME
 // Retrieve grid
 const $grid = $('#grid');
@@ -81,7 +83,7 @@ const updateGame = function(event){
   let squareID;
 
   // Get index of square user (or computer) selected
-  if (player === playerTwo && playerTwoType === 'computer'){
+  if (player === playerTwo && playerTwoType === computer){
     position = game.getComputerPosition();
   } else {
     position = getSquarePosition($(this).index());
@@ -95,7 +97,7 @@ const updateGame = function(event){
     gameState = game.addMove(position.row, position.column, player);
   }
 
-  if (player === playerTwo && playerTwoType === 'computer') {
+  if (player === playerTwo && playerTwoType === computer) {
     squareID = $(`#square\\[${position.row}\\]\\[${position.column}\\]`);
   } else {
     squareID = $(this);
@@ -134,7 +136,7 @@ const updateGame = function(event){
   if(player === playerOne){
     player = playerTwo;
 
-    if(playerTwoType === 'computer'){
+    if(playerTwoType === computer){
       setTimeout(updateGame, 500);
     }
   } else {
@@ -159,7 +161,7 @@ $('.menuButton').on('click', function(){
     showGridOptions();
   } else if (this.id === 'computerButton'){
     // set player 2 as computer
-    playerTwoType = 'computer';
+    playerTwoType = computer;
     hideSecondPlayerOptions();
     showGridOptions();
   } else if (this.id === 'gridThree'){
