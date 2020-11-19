@@ -4,8 +4,6 @@ const game = {
   // Game size default 3
   gridSize: 3,
 
-  // player: '',
-
   // Game Board
   board: [],
 
@@ -16,6 +14,8 @@ const game = {
   columns: null,
   positiveDiagonal: 0,
   negativeDiagonal: 0,
+
+  gameState: 'Continue',
 
   calculateTotalGridPoints: function(size){
     this.totalGridPoints = 2 * Math.pow(size, 2) + 2 * size;
@@ -140,9 +140,24 @@ const game = {
     }
 
     // Update Game state
-    const gameState = this.checkGameState(row, column, player);
+    gameState = this.checkGameState(row, column, player);
     return gameState;
-
   }, // addMove()
 
+  generateRandomInt: function(min, max){
+    const randomNumber = (Math.random() * (max - min)) + min;
+    return Math.round(randomNumber);
+  }, // generateRandomInt()
+
+  getComputerPosition: function(){
+    let rowPosition;
+    let columnPosition;
+
+    do {
+      rowPosition = this.generateRandomInt(0, gridSize - 1);
+      columnPosition = this.generateRandomInt(0, gridSize - 1);
+    } while (this.board[rowPosition][columnPosition] !== 0)
+
+    return {row: rowPosition, column: columnPosition};
+  }, // getComputerPosition()
 }; // game
