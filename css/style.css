@@ -206,7 +206,7 @@ footer {
 and (min-device-width: 678px) {
 
   body {
-    grid-template-rows: 0.25fr 1fr 64px;
+    grid-template-rows: 0.25fr 1fr 48px;
   }
 
   main{
