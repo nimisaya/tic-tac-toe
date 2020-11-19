@@ -95,14 +95,8 @@ const updateGame = function(event){
 
   if (player === playerTwo && playerTwoType === 'computer') {
     squareID = $(`#square\\[${position.row}\\]\\[${position.column}\\]`);
-    // $('.gridSquare').addClass('addColor')
-    $('#square[1][2]').addClass('addColor')
-    console.log('Computer squareID:');
-    console.log(squareID);
   } else {
     squareID = $(this);
-    console.log('Human squareID:');
-    console.log(squareID);
   }
 
   // Update game state
@@ -139,7 +133,8 @@ const updateGame = function(event){
     player = playerTwo;
 
     if(playerTwoType === 'computer'){
-      updateGame();
+      setTimeout(updateGame, 500);
+      // updateGame();
     }
   } else {
     player = playerOne;
