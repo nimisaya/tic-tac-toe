@@ -113,7 +113,7 @@ const updateGame = function(event){
       squareID.append($piece);
       gameState = 'GameOver';
 
-      if(player === playerOne){
+      if(player === 'cross'){
         $('#gameOverMessage').text(`Chicken wins!`);
       } else {
         $('#gameOverMessage').text(`Egg wins!`);
