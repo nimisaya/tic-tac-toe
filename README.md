@@ -17,6 +17,8 @@ Egg, Yolk, Chicken was built with a combination of JavaScript, jQuery, CSS and H
 
 ## Known bugs
 
+- Images don't appear on Safari or mobile browsers
+
 ## Future Features
 
 - Intelligent AI
