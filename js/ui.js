@@ -1,28 +1,35 @@
 let player;
-let playerTwoType; // Computer or human
-// let turn = 0;
+let playerTwoType; // computer or human
+
 const playerOne = 'cross';
 const playerTwo = 'nought';
 
 let gridSize;
 let gameState = 'Continue';
 
+const computer = 'computer';
+
 // GAME
 // Retrieve grid
 const $grid = $('#grid');
-let $square;
 
 // Display gameBoard
 const showGameBoard = function(size){
-  $grid.css({'grid-template-columns': `repeat(${size}, 1fr)`, 'grid-template-rows': `repeat(${size}, 1fr)` });
+  const $square = [];
 
+  $grid.css({'grid-template-columns': `repeat(${size}, 1fr)`, 'grid-template-rows': `repeat(${size}, 1fr)`});
+  // Create array of gridSquares
+  for (let i = 0; i < size; i++){
+    for (let j = 0; j < size; j++){
+      $square.push($(`<div class="gridSquare" id="square[${i}][${j}]"></div>`));
+    } // for ()
+  } // for()
+
+  // Add them all to the grid
   for (let i = 0; i < (Math.pow(size, 2)); i++){
-    $square = $(`<div class="gridSquare" id="square${[i]}"></div>`);
-    // Add within grid
-    $grid.append($square);
+      $grid.append($square[i]);
   } // for
 }; // showGameBoard()
-
 
 // MENU
 const showMenu = function(){
@@ -40,7 +47,6 @@ const showGridOptions = function(){
 }
 
 const hideGamePieceOptions = function(){
-  console.log('Hide game pieces');
   $('#pieceSelection').css('display', 'none');
 }; // displayGamePieceOptions()
 
@@ -68,6 +74,76 @@ const reset = function(){
   startGame(gridSize);
 }; // reset()
 
+const updateGame = function(event){
+  if (gameState === 'GameOver'){
+    return false; // end game
+  }
+
+  let position;
+  let squareID;
+
+  // Get index of square user (or computer) selected
+  if (player === playerTwo && playerTwoType === computer){
+    position = game.getComputerPosition();
+  } else {
+    position = getSquarePosition($(this).index());
+  }
+
+  // Create game piece
+  const $piece = $(`<div class="gamePiece ${player}"></div>`);
+
+  // Update move
+  if ((gameState === 'Continue')|| (gameState === 'Invalid')){
+    gameState = game.addMove(position.row, position.column, player);
+  }
+
+  if (player === playerTwo && playerTwoType === computer) {
+    squareID = $(`#square\\[${position.row}\\]\\[${position.column}\\]`);
+  } else {
+    squareID = $(this);
+  }
+
+  // Update game state
+  switch (gameState) {
+    case 'Invalid':
+      console.log('Invalid move ya drongo');
+      break;
+    case 'Winner':
+      squareID.append($piece);
+      gameState = 'GameOver';
+
+      if(player === playerOne){
+        $('#gameOverMessage').text(`Chicken wins!`);
+      } else {
+        $('#gameOverMessage').text(`Egg wins!`);
+      }
+      $('#resetButton').css('display', 'inline-block');
+      break;
+    case 'Draw':
+      squareID.append($piece);
+      gameState = 'GameOver';
+      $('#gameOverMessage').text(`It's a draw!`);
+      $('#resetButton').css('display', 'inline-block');
+      break;
+    case 'Continue':
+      squareID.append($piece);
+      break;
+    default:
+      console.log('GAME OVER');
+  } // switch()
+
+  // Update turn
+  if(player === playerOne){
+    player = playerTwo;
+
+    if(playerTwoType === computer){
+      setTimeout(updateGame, 500);
+    }
+  } else {
+    player = playerOne;
+  }
+}; // updateGame()
+
 // Menu: player chooses piece, vs. computer or human & gridsize
 $('.menuButton').on('click', function(){
   if (this.id === 'chickenButton'){
@@ -85,7 +161,7 @@ $('.menuButton').on('click', function(){
     showGridOptions();
   } else if (this.id === 'computerButton'){
     // set player 2 as computer
-    playerTwoType = 'computer';
+    playerTwoType = computer;
     hideSecondPlayerOptions();
     showGridOptions();
   } else if (this.id === 'gridThree'){
@@ -105,9 +181,8 @@ $('.menuButton').on('click', function(){
   }
 }); // .menuButton clicked
 
-
 // GAME PLAY
-
+// User hovers over game squares
 $grid.on('mouseenter', 'div', function(event){
   const squareID = `#${this.id}`;
 
@@ -128,62 +203,18 @@ $grid.on('mouseleave', 'div', function(event){
 }); // .gridSquare hover
 
 // User makes move
-$grid.on('click', 'div', function(event){
+$grid.on('click', 'div', updateGame); // .grid clicked
 
-  // Get square user selected
-  const position = getGridElementsPosition($(this).index());
-
-  // Show move
-  const $piece = $(`<div class="gamePiece ${player}"></div>`);
-
-  // Update move
-  if ((gameState === 'Continue')|| (gameState === 'Invalid')){
-    gameState = game.addMove(position.row, position.column, player);
-  }
-
-  switch (gameState) {
-    case 'Invalid':
-      console.log('Invalid move ya drongo');
-      break;
-    case 'Winner':
-      $(this).append($piece);
-      gameState = 'GameOver';
-
-      if(player === playerOne){
-        $('#gameOverMessage').text(`Chicken wins!`);
-      } else {
-        $('#gameOverMessage').text(`Egg wins!`);
-      }
-      $('#resetButton').css('display', 'inline-block');
-      break;
-    case 'Draw':
-      $(this).append($piece);
-      gameState = 'GameOver';
-      $('#gameOverMessage').text(`It's a draw!`);
-      $('#resetButton').css('display', 'inline-block');
-      break;
-    case 'Continue':
-      $(this).append($piece);
-      break;
-    default:
-      console.log('GAME OVER');
-  } // switch (gameState)
-
-  // Update turn
-  if(player === playerOne){
-    player = playerTwo;
-  } else {
-    player = playerOne;
-  }
-}); // .grid clicked
-
+// Play again with same game settings
 $('#resetButton').on('click', reset);
 
-function getGridElementsPosition(index){
+function getSquarePosition(index){
   const numColumns = $grid.css('grid-template-columns').split(' ').length;
 
   const rowPosition = Math.floor(index / numColumns);
   const columnPosition = index % numColumns;
 
+  console.log(`Row position: ${rowPosition} and Column position: ${columnPosition}`);
+
   return {row: rowPosition, column: columnPosition};
-} // getGridElementsPosition()
+} // getSquarePosition()
