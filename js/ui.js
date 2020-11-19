@@ -184,7 +184,9 @@ $('.menuButton').on('click', function(){
 // GAME PLAY
 // User hovers over game squares
 $grid.on('mouseenter', 'div', function(event){
-  const squareID = `#${this.id}`;
+  let squareID = `#${this.id}`;
+  squareID = squareID.replace(/\[/g, "\\[");
+  squareID = squareID.replace(/\]/g, "\\]");
 
   if ((squareID !== '#') && (gameState !== 'GameOver')){
     if(player === playerOne){
@@ -196,7 +198,10 @@ $grid.on('mouseenter', 'div', function(event){
 }); // .gridSquare hover
 
 $grid.on('mouseleave', 'div', function(event){
-  const squareID = `#${this.id}`;
+  let squareID = `#${this.id}`;
+  squareID = squareID.replace(/\[/g, "\\[");
+  squareID = squareID.replace(/\]/g, "\\]");
+
   if ((squareID !== '#') && (gameState !== 'GameOver')){
       $(squareID).css(`background-image`, `none`);
   }

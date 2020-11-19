@@ -146,8 +146,6 @@ button:focus {
   height: 60vh;
 
   display: grid;
-  /* grid-template-columns: repeat(var(--num-rows-cols), 1fr);
-  grid-template-rows: repeat(var(--num-rows-cols), 1fr); */
   grid-column-gap: 4px;
   grid-row-gap: 4px;
 }
@@ -169,7 +167,6 @@ button:focus {
 /* Eggs = Noughts */
 .nought {
   background-image: url('../images/Egg-Transparent.png');
-  /* background-image: var(--egg); */
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
