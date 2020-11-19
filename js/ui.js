@@ -1,8 +1,8 @@
 let player;
 let playerTwoType; // computer or human
 
-const playerOne = 'cross';
-const playerTwo = 'nought';
+let playerOne;
+let playerTwo;
 
 let gridSize;
 let gameState = 'Continue';
@@ -71,6 +71,7 @@ const reset = function(){
   gameState = 'Continue';
   $grid.children().remove();
   $('#gameOverMessage').text(``);
+  player = playerOne;
   startGame(gridSize);
 }; // reset()
 
@@ -147,11 +148,15 @@ const updateGame = function(event){
 // Menu: player chooses piece, vs. computer or human & gridsize
 $('.menuButton').on('click', function(){
   if (this.id === 'chickenButton'){
+    playerOne = 'cross';
+    playerTwo = 'nought';
     player = playerOne;
     hideGamePieceOptions();
     showSecondPlayerOptions();
   } else if (this.id === 'eggButton'){
-    player = playerTwo;
+    playerOne = 'nought';
+    playerTwo = 'cross';
+    player = playerOne;
     hideGamePieceOptions();
     showSecondPlayerOptions();
   } else if (this.id === 'humanButton'){
@@ -189,7 +194,7 @@ $grid.on('mouseenter', 'div', function(event){
   squareID = squareID.replace(/\]/g, "\\]");
 
   if ((squareID !== '#') && (gameState !== 'GameOver')){
-    if(player === playerOne){
+    if(player === 'cross'){
       $(squareID).css({backgroundImage: `url(images/Chicken-Transparent.png)`, backgroundSize: `cover`});
     } else {
       $(squareID).css({backgroundImage: `url(images/Egg-Transparent.png)`, backgroundSize: `cover`});
