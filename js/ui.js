@@ -11,7 +11,6 @@ let gameState = 'Continue';
 // Retrieve grid
 const $grid = $('#grid');
 
-
 // Display gameBoard
 const showGameBoard = function(size){
   const $square = [];
@@ -20,10 +19,9 @@ const showGameBoard = function(size){
   // Create array of gridSquares
   for (let i = 0; i < size; i++){
     for (let j = 0; j < size; j++){
-      const squareStr = $(`<div class="gridSquare" id="square[${i}][${j}]"></div>`);
-      $square.push(squareStr);
-    }
-  }
+      $square.push($(`<div class="gridSquare" id="square[${i}][${j}]"></div>`));
+    } // for ()
+  } // for()
 
   // Add them all to the grid
   for (let i = 0; i < (Math.pow(size, 2)); i++){
@@ -75,6 +73,10 @@ const reset = function(){
 }; // reset()
 
 const updateGame = function(event){
+  if (gameState === 'GameOver'){
+    return false; // end game
+  }
+
   let position;
   let squareID;
 
@@ -82,7 +84,7 @@ const updateGame = function(event){
   if (player === playerTwo && playerTwoType === 'computer'){
     position = game.getComputerPosition();
   } else {
-    position = getGridElementsPosition($(this).index());
+    position = getSquarePosition($(this).index());
   }
 
   // Create game piece
@@ -126,7 +128,7 @@ const updateGame = function(event){
       break;
     default:
       console.log('GAME OVER');
-  } // switch (gameState)
+  } // switch()
 
   // Update turn
   if(player === playerOne){
@@ -134,7 +136,6 @@ const updateGame = function(event){
 
     if(playerTwoType === 'computer'){
       setTimeout(updateGame, 500);
-      // updateGame();
     }
   } else {
     player = playerOne;
@@ -205,7 +206,7 @@ $grid.on('click', 'div', updateGame); // .grid clicked
 // Play again with same game settings
 $('#resetButton').on('click', reset);
 
-function getGridElementsPosition(index){
+function getSquarePosition(index){
   const numColumns = $grid.css('grid-template-columns').split(' ').length;
 
   const rowPosition = Math.floor(index / numColumns);
@@ -214,4 +215,4 @@ function getGridElementsPosition(index){
   console.log(`Row position: ${rowPosition} and Column position: ${columnPosition}`);
 
   return {row: rowPosition, column: columnPosition};
-} // getGridElementsPosition()
+} // getSquarePosition()

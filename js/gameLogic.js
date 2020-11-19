@@ -17,6 +17,8 @@ const game = {
   positiveDiagonal: 0,
   negativeDiagonal: 0,
 
+  gameState: 'Continue',
+
   calculateTotalGridPoints: function(size){
     this.totalGridPoints = 2 * Math.pow(size, 2) + 2 * size;
   },
@@ -140,7 +142,7 @@ const game = {
     }
 
     // Update Game state
-    const gameState = this.checkGameState(row, column, player);
+    gameState = this.checkGameState(row, column, player);
     return gameState;
 
   }, // addMove()
@@ -151,9 +153,20 @@ const game = {
   }, // generateRandomInt()
 
   getComputerPosition: function(){
-    const rowPosition = this.generateRandomInt(0, gridSize - 1);
-    const columnPosition = this.generateRandomInt(0, gridSize - 1);
+    let rowPosition;
+    let columnPosition;
 
-    return {row: rowPosition, column: columnPosition};
+    do {
+      rowPosition = this.generateRandomInt(0, gridSize - 1);
+      columnPosition = this.generateRandomInt(0, gridSize - 1);
+      console.log('Computer tried same move');
+    } while (this.board[rowPosition][columnPosition] !== 0)
+
+    // if (this.board[rowPosition][columnPosition] !== 0){
+    //   this.getComputerPosition();
+    // } else {
+      return {row: rowPosition, column: columnPosition};
+    // }
+
   }, // getComputerPosition()
 }; // game
