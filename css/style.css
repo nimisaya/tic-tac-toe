@@ -105,14 +105,14 @@ button:focus {
 }
 
 #chickenButton {
-  background-image: var(--chicken);
+  background-image: url('../images/Chicken-Transparent.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
 }
 
 #eggButton {
-  background-image: var(--egg);
+  background-image: url('../images/Egg-Transparent.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
@@ -168,7 +168,8 @@ button:focus {
 
 /* Eggs = Noughts */
 .nought {
-  background-image: var(--egg);
+  background-image: url('../images/Egg-Transparent.png');
+  /* background-image: var(--egg); */
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
@@ -177,7 +178,7 @@ button:focus {
 
 /* Chicken = Crosses */
 .cross {
-  background-image: var(--chicken);
+  background-image: url('../images/Chicken-Transparent.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
