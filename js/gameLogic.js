@@ -145,4 +145,17 @@ const game = {
 
   }, // addMove()
 
+  generateRandomInt: function(min, max){
+    const randomNumber = (Math.random() * (max - min)) + min;
+    return Math.round(randomNumber);
+  }, // generateRandomInt()
+
+  getComputerPosition: function(){
+    // const rowPosition = this.generateRandomInt(0, gridSize - 1);
+    // const columnPosition = this.generateRandomInt(0, gridSize - 1);
+    const rowPosition = 1;
+    const columnPosition = 1;
+
+    return {row: rowPosition, column: columnPosition};
+  }, // getComputerPosition()
 }; // game
