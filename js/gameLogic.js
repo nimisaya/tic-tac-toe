@@ -3,12 +3,12 @@ const game = {
     turn: true, // true: player one, false player two
     one: {
       token: '',
-    },
+    },// player.one
     two: {
       token: '',
       computerMode: false, // false: human vs. human
       // difficulty: 'easy',
-    },
+    }, // player.two
 
     setTokens: function(playerOneToken){
       if (playerOneToken === 'cross'){
@@ -18,8 +18,8 @@ const game = {
         this.one.token = 'nought';
         this.two.token = 'cross';
       }
-    }, //setTokens()
-  },
+    }, // player.setTokens()
+  }, // game.player
 
   rowSize: null,
   board: [],
@@ -46,7 +46,7 @@ const game = {
       this.draw = false;
       this.gameEnded = false;
     }, // reset()
-  }, // states
+  }, // game.states
 
   createBoard: function(size){
     this.board.length = 0; // Ensure board is empty
@@ -56,7 +56,7 @@ const game = {
       this.board.push(new Array(size).fill(0));
       this.remainingMoves.push(new Array(size).fill(0));
     }// for
-  }, // createBoard()
+  }, // game.createBoard()
 
   startGame: function(playerToken, mode, size, difficulty){
     this.createBoard(size);
@@ -67,7 +67,12 @@ const game = {
       this.player.two.computerMode = true;
       computer.setDifficulty(difficulty);
     }
-  }, // startGame()
+  }, // game.startGame()
+
+  reset: function(){
+    this.createBoard(game.rowSize);
+    this.state.reset();
+  }, // game.reset()
 
   isValidMove: function(){
     if(this.board[row][column] === null){
@@ -76,21 +81,21 @@ const game = {
       this.state.invalid = true;
     }
     return this.state.invalid;
-  }, // isValidMove()
+  }, // game.isValidMove()
 
   isWin: function(){
     if(){
       this.state.win = true;
     }
     return this.state.win;
-  }, // isWin()
+  }, // game.isWin()
 
   isDraw: function(){
     if(this.remainingMoves.length === 0){
       this.state.draw = true;
     }
     return this.state.draw;
-  }, // isDraw()
+  }, // game.isDraw()
 
   isNextTurn: function(){
     if(this.isWin()){
@@ -104,7 +109,7 @@ const game = {
     }
 
     return true;
-  }, // isNextTurn();
+  }, // game.isNextTurn();
 
   updateTurn: function(){
     this.player.turn = !this.player.turn;
@@ -115,7 +120,7 @@ const game = {
         this.addMove(position.row, position.column, this.player.two.token);
       }
     }
-  }, // updateTurn()
+  }, // game.updateTurn()
 
   addMove: function(row, column, player){
     if (this.gameEnded){
@@ -124,7 +129,10 @@ const game = {
     if (this.isValidMove()){
       this.board[row][column] = player;
       this.remainingMoves[row][column].pop();
+      this.updateTurn();
       return this.isNextTurn(); // Returns false if win/draw condition met
+    } else {
+      return false;
     }
-  }, // addMove()
+  }, // game.addMove()
 }; // game
