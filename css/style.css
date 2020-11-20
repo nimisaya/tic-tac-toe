@@ -6,269 +6,102 @@
   --body-font: sans-serif;
 
   /* Colours */
-  --prominant-yellow: #FFBE3F;
+  --yolk-yellow: #FFBE3F;
   --dark-blue: #011F3E;
-
-  /* Images */
-  --chicken: url('../images/Chicken-Transparent.png');
-  --egg: url('../images/Egg-Transparent.png');
 
   /* Borders */
   --card-border: 4px solid white;
-}
+};
 
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  margin: 0;
+  box-sizing: 0;
+
 }
 
 body {
+  margin: 0;
+  background-color: var(--yolk-yellow);
+
   font-family: var(--body-font);
+  font-size: var(--body-text);
   color: var(--dark-blue);
-  font-size: 0.9rem;
-
-  background-color:var(--prominant-yellow);
-
-  display: grid;
-  grid-template-areas:
-    "header"
-    "main"
-    "footer";
-
-  height: 100vh;
 }
 
 header {
-  grid-area: "header";
-  margin: 0 auto;
-  text-align: center;
-}
-
-h1 {
-  font-family: var(--heading-font);
-  font-size: 3rem;
-  margin: 32px;
-}
-
-h2 {
-  font-family: var(--heading-font);
-  font-size: 2rem;
-  margin: 2px;
+  grid-area: header;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical alignment */
+  align-items: center; /* horizontal alignment */
+  background-color: hotpink;
 }
 
 main {
-  grid-area: "main";
-  margin: 0 auto;
-  width: 80%;
-  text-align: center;
+  grid-area: main;
+  background-color: blue;
 }
 
-button:hover {
-  background-color: var(--prominant-yellow);
-  cursor: pointer;
-}
-
-button:focus {
-  background-color: var(--dark-blue);
-  color: white;
-}
-
-.menu {
-  margin: 0 auto;
-}
-
-.menuButton {
-  background-color: white;
-
-  border-radius: 12px;
-  border: var(--card-border);
-  box-shadow: 0 0 6px rgba(0,33,66, 0.2);
-
-  font-family: var(--heading-font);
-  color: var(--dark-blue);
-  font-size: 1.75rem;
-
-  transition: background-color 0.2s ease;
-}
-
-#menuQuestion {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 24px;
-}
-
-#instructions {
-  margin: 0 auto;
-  text-align: left;
-}
-
-#pieceSelection {
-  display: block;
-}
-
-#playerTwoSelection {
-  display: none;
-}
-
-#chickenButton {
-  background-image: url('../images/Chicken-Transparent.png');
-  background-size:cover;
-}
-
-#eggButton {
-  background-image: url('../images/Egg-Transparent.png');
-  background-size: cover;
-}
-
-.desktopGridOptions { /* 5x5 and 6x6 not available on mobile */
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.gridButton {
-  display: none;
-}
-
-#game {
-  display: none;
-  margin: 0 auto;
-
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-#grid {
-  display: grid;
-  grid-column-gap: 4px;
-  grid-row-gap: 4px;
-}
-
-.gridSquare {
-  cursor: pointer;
-
-  background-color: var(--dark-blue);
-  border: var(--card-border);
-  border-radius: 24px;
-  box-shadow: 0 0 6px rgba(0,33,66, 0.2);
-  transition: background-color 0.1s ease;
-}
-
-.gamePiece {
-  border-radius: 12px;
-  height: 100%;
-}
-
-/* Eggs = Noughts */
-.nought {
-  background-image: url('../images/Egg-Transparent.png');
-  background-size: cover;
-  background-color: white;
-}
-
-/* Chicken = Crosses */
-.cross {
-  background-image: url('../images/Chicken-Transparent.png');
-  background-size: cover;
-  background-color: white;
-}
-
-.gridSquare:hover {
-  background-color: var(--prominant-yellow);
-}
-
-#resetButton {
-  display: none;
-
-  margin: 12px;
-  padding: 12px;
-
-  font-size: 24px;
-  color: white;
-
-  background-color: var(--dark-blue);
-  border: none;
-  border-radius: 12px;
-  box-shadow: 0 0 6px rgba(0,33,66, 0.2);
+aside {
+  grid-area: aside;
+  background-color: green;
 }
 
 footer {
-  grid-area: "footer";
-  margin: 0 auto;
+  grid-area: footer;
+  background-color:red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical alignment */
+  align-items: center; /* horizontal alignment */
 }
 
-/* Desktop */
-@media screen
-and (min-device-width: 678px) {
+@media screen and (max-device-width: 667px) {
+  #container {
+    height: 100vh;
+    margin: 16px;
 
-  body {
-    grid-template-rows: 0.25fr 1fr 48px;
-  }
-
-  main{
-    width: 50%;
-  }
-
-  .menuButton {
-    margin: 12px;
-    width: 20vh;
-    height: 20vh;
-  }
-
-  #instructions {
-    max-width: 65%;
-  }
-
-  #game {
-    width: 70vh;
-    height: 65vh;
-  }
-  #grid {
-    width: 60vh;
-    height: 60vh;
+    display: grid;
+    grid-template-rows: 0.25fr 1fr 0.25fr auto;
+    grid-gap: 12px;
+    grid-template-areas:
+      "header"
+      "main"
+      "aside"
+      "footer";
   }
 }
 
-/* Mobile */
-@media only screen
-  and (min-device-width: 375px)
-  and (max-device-width: 667px)
-  and (-webkit-min-device-pixel-ratio: 2) {
+@media screen and (max-device-width: 799px) {
+  #container {
+    height: 100vh;
+    margin: 16px;
 
-  body {
-    grid-template-rows: 0.6fr 1fr 64px;
+    display: grid;
+    grid-template-rows: 0.25fr 1fr 0.25fr auto;
+    grid-gap: 12px;
+    grid-template-areas:
+      "header"
+      "main"
+      "aside"
+      "footer";
   }
+}
 
-  .menuButton {
-    margin: 4px;
-    width: 18vh;
-    height: 18vh;
-  }
+@media screen and (min-device-width: 800px) {
+  #container {
+    height: 100vh;
+    max-width: 960px;
+    margin: 0 auto;
 
-  #computerButton {
-    font-size: 1.4rem;
-  }
-
-  #instructions {
-    max-width: 80%;
-    margin-bottom: 24px;
-  }
-
-  #game {
-    width: 45vh;
-    height: 45vh;
-  }
-
-  #grid {
-    width: 44vh;
-    height: 44vh;
-  }
-
-  .desktopGridOptions {
-    display: none;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 0.25fr 1fr 0.25fr auto;
+    grid-gap: 12px;
+    grid-template-areas:
+      "header header"
+      "main aside"
+      "footer footer";
   }
 }
