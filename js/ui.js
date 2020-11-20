@@ -145,6 +145,13 @@ const updateGame = function(event){
   }
 }; // updateGame()
 
+const getSquarePosition = function(index){
+  const rowPosition = Math.floor(index / gridSize);
+  const columnPosition = index % gridSize;
+
+  return {row: rowPosition, column: columnPosition};
+}; // getSquarePosition()
+
 // Menu: player chooses piece, vs. computer or human & gridsize
 $('.menuButton').on('click', function(){
   if (this.id === 'chickenButton'){
@@ -217,14 +224,3 @@ $grid.on('click', 'div', updateGame); // .grid clicked
 
 // Play again with same game settings
 $('#resetButton').on('click', reset);
-
-function getSquarePosition(index){
-  const numColumns = $grid.css('grid-template-columns').split(' ').length;
-
-  const rowPosition = Math.floor(index / numColumns);
-  const columnPosition = index % numColumns;
-
-  console.log(`Row position: ${rowPosition} and Column position: ${columnPosition}`);
-
-  return {row: rowPosition, column: columnPosition};
-} // getSquarePosition()
