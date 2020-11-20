@@ -11,17 +11,23 @@
 
   /* Borders */
   --card-border: 4px solid white;
+
+  /* Shadows */
+  --button-shadow: 0 0 6px rgba(0, 33, 66, 0.2);
+
+  /* Border radius */
+  --button-radius: 12px;
 };
 
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: 0;
-
 }
 
 body {
   margin: 0;
+
   background-color: var(--yolk-yellow);
 
   font-family: var(--body-font);
@@ -31,30 +37,92 @@ body {
 
 header {
   grid-area: header;
+
   display: flex;
   flex-direction: column;
   justify-content: center; /* vertical alignment */
   align-items: center; /* horizontal alignment */
-  background-color: hotpink;
+  /* background-color: hotpink; */
 }
 
 main {
   grid-area: main;
-  background-color: blue;
+  /* background-color: blue; */
 }
 
 aside {
   grid-area: aside;
-  background-color: green;
+  /* background-color: green; */
 }
 
 footer {
   grid-area: footer;
-  background-color:red;
+
+  /* background-color:red; */
+
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center; /* vertical alignment */
   align-items: center; /* horizontal alignment */
+}
+
+h1 {
+  font-family: var(--heading-font);
+}
+
+button {
+  cursor: pointer;
+
+  width: 20vh;
+  height: 20vh;
+
+  background-color: white;
+
+  border: var(--card-border);
+  border-radius: var(--button-radius);
+  box-shadow: var(--button-shadow);
+
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: var(--yolk-yellow);
+}
+
+button:focus {
+  background-color: var(--dark-blue);
+  color: white;
+}
+
+.menu {
+  display: grid;
+  grid-auto-rows: repeat(2, 1fr);
+  justify-content: center;
+  align-items: center;
+  grid-gap: 4px;
+}
+
+.menuButton {
+  background-size: cover;
+  background-color: white;
+  font-family: var(--heading-font);
+
+}
+
+.cross {
+  background-image: url('../images/Chicken-Transparent.png');
+}
+
+.nought {
+  background-image: url('../images/Egg-Transparent.png');
+}
+
+.human {
+  background-image: url('../images/Human-Transparent.png');
+}
+
+.computer {
+  background-image: url('../images/Computer-Transparent.png');
 }
 
 @media screen and (max-device-width: 667px) {
@@ -71,12 +139,20 @@ footer {
       "aside"
       "footer";
   }
+
+  .desktopOnly {
+    display: none;
+  }
+
+  .gridOption{
+    font-size: 64px;
+  }
 }
 
 @media screen and (max-device-width: 799px) {
   #container {
     height: 100vh;
-    margin: 16px;
+    margin: 32px;
 
     display: grid;
     grid-template-rows: 0.25fr 1fr 0.25fr auto;
@@ -86,6 +162,14 @@ footer {
       "main"
       "aside"
       "footer";
+  }
+
+  .desktopOnly {
+    display: none;
+  }
+
+  .gridOption{
+    font-size: 32px;
   }
 }
 
@@ -104,4 +188,9 @@ footer {
       "main aside"
       "footer footer";
   }
+
+  .gridOption{
+    font-size: 32px;
+  }
+
 }
