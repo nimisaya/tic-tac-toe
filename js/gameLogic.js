@@ -1,163 +1,130 @@
-
 const game = {
+  player: {
+    turn: true, // true: player one, false player two
+    one: {
+      token: '',
+    },
+    two: {
+      token: '',
+      computerMode: false, // false: human vs. human
+      // difficulty: 'easy',
+    },
 
-  // Game size default 3
-  gridSize: 3,
-
-  // Game Board
-  board: [],
-
-  count: 0,
-  totalGridPoints: 0,
-
-  rows: null,
-  columns: null,
-  positiveDiagonal: 0,
-  negativeDiagonal: 0,
-
-  gameState: 'Continue',
-
-  calculateTotalGridPoints: function(size){
-    this.totalGridPoints = 2 * Math.pow(size, 2) + 2 * size;
+    setTokens: function(playerOneToken){
+      if (playerOneToken === 'cross'){
+        this.one.token = 'cross';
+        this.two.token = 'nought';
+      } else {
+        this.one.token = 'nought';
+        this.two.token = 'cross';
+      }
+    }, //setTokens()
   },
 
-  start: function(size, playerOne, playerTwoType){
-    this.gridSize = size;
-    // this.player = playerOne;
+  rowSize: null,
+  board: [],
+  remainingMoves: [],
 
-    // Reset board
-    this.board.length = 0;
-    this.count = 0;
+  state: {
+    continue: true,
+    invalid: false,
+    win: false,
+    draw: false,
+    gameEnded: false,
 
-    // Set up board
-    for (let i = 0; i < size; i++){
+    setGameEnd: function(){
+      if(this.win || this.draw){
+        this.gameEnded = true;
+        this.continue = false;
+      }
+    }, // setGameEnd()
+
+    reset: function(){
+      this.continue = true;
+      this.invalid = false;
+      this.win = false;
+      this.draw = false;
+      this.gameEnded = false;
+    }, // reset()
+  }, // states
+
+  createBoard: function(size){
+    this.board.length = 0; // Ensure board is empty
+    this.rowSize = size;
+
+    for (let i = 0; i < this.rowSize; i++){
       this.board.push(new Array(size).fill(0));
-    } // for
+      this.remainingMoves.push(new Array(size).fill(0));
+    }// for
+  }, // createBoard()
 
-    // Set up rows, columns and diagonals to determine if game over
-    this.rows = new Array(size).fill(0)
-    this.columns = new Array(size).fill(0)
-    this.positiveDiagonal = 0;
-    this.negativeDiagonal = 0;
+  startGame: function(playerToken, mode, size, difficulty){
+    this.createBoard(size);
+    this.player.setTokens(playerToken);
+    this.state.reset();
 
-    // Calculate grid points in game board (rows^2 + columns^2 + positiveDiagonal + negativeDiagonal )
-    this.calculateTotalGridPoints(size);
-  }, // start()
+    if(mode === 'computer'){ // defaults to human
+      this.player.two.computerMode = true;
+      computer.setDifficulty(difficulty);
+    }
+  }, // startGame()
 
-  isIdentical: function(array){
-    for(let i = 0; i < array.length - 1; i++) {
+  isValidMove: function(){
+    if(this.board[row][column] === null){
+      this.state.invalid = false;
+    } else {
+      this.state.invalid = true;
+    }
+    return this.state.invalid;
+  }, // isValidMove()
 
-      if(array[i] !== array[i + 1]) {
-        return false;
-      }
-    } // for
+  isWin: function(){
+    if(){
+      this.state.win = true;
+    }
+    return this.state.win;
+  }, // isWin()
+
+  isDraw: function(){
+    if(this.remainingMoves.length === 0){
+      this.state.draw = true;
+    }
+    return this.state.draw;
+  }, // isDraw()
+
+  isNextTurn: function(){
+    if(this.isWin()){
+      this.setGameEnd();
+      return false;
+    }
+
+    if(this.isDraw()){
+      this.setGameEnd();
+      return false;
+    }
+
     return true;
-  }, // isIdentical()
+  }, // isNextTurn();
 
-  checkGameState: function(row, column, player){
-    const comparisonArray = [];
+  updateTurn: function(){
+    this.player.turn = !this.player.turn;
 
-    // Check if won across Row
-    if(this.rows[row] === this.gridSize){
-
-      for (let i = 0; i < this.gridSize; i++){
-        comparisonArray.push(this.board[row][i]);
-      }// for
-
-      if (this.isIdentical(comparisonArray)){
-        return `Winner`;
-      } else {
-        comparisonArray.length = 0;
+    if (this.player.turn === false){
+      if (this.player.two.computerMode){
+        const position = computer.takeTurn();
+        this.addMove(position.row, position.column, this.player.two.token);
       }
     }
-    // Check if won across Column
-    if (this.columns[column] === this.gridSize){
-        for (let i = 0; i < this.gridSize; i++){
-          comparisonArray.push(this.board[i][column]);
-        }
-      if (this.isIdentical(comparisonArray)){
-        return `Winner`;
-      } else {
-        comparisonArray.length = 0;
-      }
-    }
-    // Check if won on positive diagonal
-    if (this.positiveDiagonal === this.gridSize){
-      for (let i = 0; i < this.gridSize; i++){
-        comparisonArray.push(this.board[i][i]);
-      }
-      if (this.isIdentical(comparisonArray)){
-        return `Winner`;
-      } else {
-        comparisonArray.length = 0;
-      }
-    }
-    // Check if won on negative diagonal
-    if (this.negativeDiagonal === this.gridSize){
-      let j = this.gridSize - 1;
-      for (let i = 0; i < this.gridSize; i++){
-          comparisonArray.push(this.board[i][j]);
-          j--;
-      }
-      if (this.isIdentical(comparisonArray)){
-        return `Winner`;
-      } else {
-        comparisonArray.length = 0;
-      }
-    }
-    // Check for a draw
-    if (this.count === this.totalGridPoints){
-      return `Draw`;
-    }
-
-    return 'Continue';
-  }, // checkGameState()
+  }, // updateTurn()
 
   addMove: function(row, column, player){
-    // Ensure move is valid
-    if ((this.board[row][column] !== 0)){
-      return 'Invalid';
+    if (this.gameEnded){
+      return false;
     }
-
-    // Add move
-    this.board[row][column] = player;
-
-    // Increment row / column / diagonal / neg diagonal counts
-    this.rows[row]++;
-    this.count++;
-
-    this.columns[column]++;
-    this.count++;
-
-    if (row === column) {
-      this.positiveDiagonal++;
-      this.count++;
+    if (this.isValidMove()){
+      this.board[row][column] = player;
+      this.remainingMoves[row][column].pop();
+      return this.isNextTurn(); // Returns false if win/draw condition met
     }
-
-    if (row + column + 1 === this.gridSize){
-      this.negativeDiagonal++;
-      this.count++;
-    }
-
-    // Update Game state
-    gameState = this.checkGameState(row, column, player);
-    return gameState;
   }, // addMove()
-
-  generateRandomInt: function(min, max){
-    const randomNumber = (Math.random() * (max - min)) + min;
-    return Math.round(randomNumber);
-  }, // generateRandomInt()
-
-  getComputerPosition: function(){
-    let rowPosition;
-    let columnPosition;
-
-    do {
-      rowPosition = this.generateRandomInt(0, gridSize - 1);
-      columnPosition = this.generateRandomInt(0, gridSize - 1);
-    } while (this.board[rowPosition][columnPosition] !== 0)
-
-    return {row: rowPosition, column: columnPosition};
-  }, // getComputerPosition()
 }; // game
