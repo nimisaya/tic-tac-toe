@@ -13,8 +13,14 @@ const computer = {
         default:
           this.level = 0;
       }
-    }
+    },
+
   }, // difficulty()
+
+  position: {
+    row: null,
+    column: null,
+  }
 
   generateRandomInt: function(min = 0, max = game.rowSize){
     const randomNumber = (Math.random() * (max - min)) + min;
@@ -22,9 +28,9 @@ const computer = {
   }, // generateRandomInt()
 
   randomPosition: function(){
-    const randomRow = this.generateRandomInt();
-    const randomColumn = this.generateRandomInt();
-    return {row: randomRow, column: randomColumn};
+    this.position.row = this.generateRandomInt();
+    this.position.column = this.generateRandomInt();
+    return position;
   }, // randomPosition()
 
   semiRandomPosition: function(){
