@@ -5,45 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Egg, Yolk, Chicken</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header>
-    <h1>Egg, Yolk, Chicken</h1>
-    <p>Tic tac toe with a twist. Play as Chicken or Egg to solve the age old question of who came first.</p>
-  </header>
-  <main>
-    <div class="menu">
-      <p id="menuQuestion"></p>
-      <div id="selectToken">
-        <button class="menuButton"></button>
-        <button class="menuButton"></button>
-      </div>
-      <div id="selectGamemode">
-        <button class="menuButton"></button>
-        <button class="menuButton"></button>
-      </div>
-      <div id="selectBoardSize">
-        <button class="menuButton" aria-label="3 by 3 grid">3 x 3</button>
-        <button class="menuButton" aria-label="4 by 4 grid">4 x 4</button>
-        <div id="desktopOnly">
-          <button class="menuButton" aria-label="5 by 5 grid">5 x 5</button>
-          <button class="menuButton" aria-label="6 by 6 grid">6 x 6</button>
+  <div id="container" class="centered">
+    <header>
+      <h1>Egg, Yolk, Chicken</h1>
+      <p>Tic tac toe with a twist. Play as Chicken or Egg to solve the age old question of who came first.</p>
+    </header>
+    <main>
+      <div class="menu">
+        <p id="menuQuestion">Play as a chicken or egg:</p>
+        <div id="selectToken">
+          <button class="menuButton cross" aria-label="Chicken"></button>
+          <button class="menuButton nought" aria-label="Egg"></button>
+        </div>
+        <div id="selectGamemode">
+          <button class="menuButton human"></button>
+          <button class="menuButton computer"></button>
+        </div>
+        <div id="selectBoardSize">
+          <button class="menuButton gridOption" aria-label="3 by 3 grid">3 x 3</button>
+          <button class="menuButton gridOption" aria-label="4 by 4 grid">4 x 4</button>
+          <button class="menuButton gridOption desktopOnly" aria-label="5 by 5 grid">5 x 5</button>
+          <button class="menuButton gridOption desktopOnly" aria-label="6 by 6 grid">6 x 6</button>
         </div>
       </div>
-    </div>
-    <div id="game" aria-label="Game board">
-      <div id="grid" aria-label="Grid">
-        <!-- Game squares -->
+      <div id="game" aria-label="Game board">
+        <div id="grid" aria-label="Grid">
+          <!-- Game squares -->
+        </div>
       </div>
-    </div>
-  </main>
-  <aside>
-    <h2 id="gameOverMessage"></h2>
-    <button id="reset" aria-label="Play again">Play again</button>
-    <button id="settings" aria-label= "Settings">Settings</button>
-  </aside>
-  <footer>
-    <p> <small>© Amanda Jarvinen, 2020</small></p>
-  </footer>
+    </main>
+    <aside>
+      <h2 id="gameOverMessage"></h2>
+      <button id="reset" aria-label="Play again">Play again</button>
+      <button id="settings" aria-label= "Settings">Settings</button>
+    </aside>
+    <footer>
+      <p> <small>© Amanda Jarvinen, 2020</small></p>
+    </footer>
+  </div>
 </body>
 </html>
