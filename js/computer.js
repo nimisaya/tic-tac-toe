@@ -14,13 +14,12 @@ const computer = {
           this.level = 0;
       }
     },
-
   }, // difficulty()
 
   position: {
     row: null,
     column: null,
-  }
+  },
 
   generateRandomInt: function(min = 0, max = game.rowSize){
     const randomNumber = (Math.random() * (max - min)) + min;
@@ -55,5 +54,5 @@ const computer = {
     }
 
     return position;
-  }, // takeTurn()
+  }
 }; // computer
