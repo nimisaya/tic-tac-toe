@@ -122,6 +122,16 @@ button:focus {
   background-size: cover;
 }
 
+#humanButton {
+  background-image: url('../images/Human-Transparent.png');
+  background-size: cover;
+}
+
+#computerButton {
+  background-image: url('../images/Computer-Transparent.png');
+  background-size: cover;
+}
+
 .desktopGridOptions { /* 5x5 and 6x6 not available on mobile */
   display: flex;
   flex-direction: row;
