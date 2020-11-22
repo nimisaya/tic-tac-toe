@@ -6,133 +6,195 @@
   --body-font: sans-serif;
 
   /* Colours */
-  --prominant-yellow: #FFBE3F;
+  --yolk-yellow: #FFBE3F;
   --dark-blue: #011F3E;
-
-  /* Images */
-  --chicken: url('../images/Chicken-Transparent.png');
-  --egg: url('../images/Egg-Transparent.png');
 
   /* Borders */
   --card-border: 4px solid white;
-}
+
+  /* Shadows */
+  --button-shadow: 0 0 6px rgba(0, 33, 66, 0.2);
+
+  /* Border radius */
+  --button-radius: 12px;
+};
 
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  margin: 0;
+  box-sizing: 0;
 }
 
 body {
-  font-family: var(--body-font);
-  color: var(--dark-blue);
-  font-size: 0.9rem;
+  margin: 0;
 
-  background-color:var(--prominant-yellow);
+  background-color: var(--yolk-yellow);
+
+  font-family: var(--body-font);
+  font-size: var(--body-text);
+  color: var(--dark-blue);
+}
+
+#container {
+  height: 100vh;
+  max-width: 960px;
+  margin: 0 auto;
 
   display: grid;
+  grid-template-rows: 0.25fr 1fr 0.25fr auto;
+  grid-gap: 12px;
   grid-template-areas:
-    "header"
-    "main"
-    "footer";
-
-  height: 100vh;
+    "header header"
+    "main main"
+    "state state"
+    "footer footer";
 }
 
+/* Sections */
 header {
-  grid-area: "header";
-  margin: 0 auto;
-  text-align: center;
-}
+  grid-area: header;
 
-h1 {
-  font-family: var(--heading-font);
-  font-size: 3rem;
-  margin: 32px;
-}
-
-h2 {
-  font-family: var(--heading-font);
-  font-size: 2rem;
-  margin: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical alignment */
+  align-items: center; /* horizontal alignment */
 }
 
 main {
-  grid-area: "main";
-  margin: 0 auto;
-  width: 80%;
-  text-align: center;
+  grid-area: main;
 }
 
-button:hover {
-  background-color: var(--prominant-yellow);
-  cursor: pointer;
+#gameInformation {
+  grid-area: state;
 }
 
-button:focus {
-  background-color: var(--dark-blue);
-  color: white;
-}
-
-.menu {
-  margin: 0 auto;
-}
-
-.menuButton {
-  background-color: white;
-
-  border-radius: 12px;
-  border: var(--card-border);
-  box-shadow: 0 0 6px rgba(0,33,66, 0.2);
-
-  font-family: var(--heading-font);
-  color: var(--dark-blue);
-  font-size: 1.75rem;
-
-  transition: background-color 0.2s ease;
-}
-
-#menuQuestion {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 24px;
-}
-
-#instructions {
-  margin: 0 auto;
-  text-align: left;
-}
-
-#pieceSelection {
-  display: block;
-}
-
-#playerTwoSelection {
-  display: none;
-}
-
-#chickenButton {
-  background-image: url('../images/Chicken-Transparent.png');
-  background-size:cover;
-}
-
-#eggButton {
-  background-image: url('../images/Egg-Transparent.png');
-  background-size: cover;
-}
-
-.desktopGridOptions { /* 5x5 and 6x6 not available on mobile */
+#newgame {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
 
-.gridButton {
+footer {
+  grid-area: footer;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /* vertical alignment */
+  align-items: center; /* horizontal alignment */
+}
+
+/* Visibility */
+#selectToken {
+  display: block;
+}
+
+#selectGamemode {
   display: none;
 }
 
+#selectBoardSize{
+  display: none;
+}
+
+/* Text */
+h1 {
+  font-family: var(--heading-font);
+}
+
+header > p {
+  max-width: 50vw;
+}
+
+.menu > p {
+  font-weight: bold;
+}
+
+/* Menu */
+.menu {
+  display: grid;
+  grid-auto-rows: repeat(2, 1fr);
+  justify-content: center;
+  align-items: center;
+  grid-gap: 4px;
+}
+
+/* Buttons */
+button {
+  cursor: pointer;
+}
+
+.primaryButton {
+  margin: 4px;
+  padding: 14px;
+
+  font-size: 24px;
+  color: white;
+  text-align: center;
+
+  background-color: var(--dark-blue);
+  border: none;
+  border-radius: var(--button-radius);
+  box-shadow: var(--button-shadow);
+
+  transition: background-color 0.2s ease;
+}
+
+.primaryButton:hover {
+  background-color: #000625;
+}
+
+.primaryButton:focus {
+  background-color: #00000B;
+}
+
+.imageButton {
+  width: 20vh;
+  height: 20vh;
+
+  background-color: white;
+
+  border: var(--card-border);
+  border-radius: var(--button-radius);
+  box-shadow: var(--button-shadow);
+
+  transition: background-color 0.2s ease;
+}
+
+.imageButton:hover {
+  background-color: var(--yolk-yellow);
+}
+
+.imageButton:focus {
+  background-color: var(--dark-blue);
+  color: white;
+}
+
+.menuButton {
+  background-size: cover;
+  background-color: white;
+  font-family: var(--heading-font);
+}
+
+/* Images */
+.chicken {
+  background-image: url('../images/Chicken-Transparent.png');
+}
+
+.egg {
+  background-image: url('../images/Egg-Transparent.png');
+}
+
+#human {
+  background-image: url('../images/Human-Transparent.png');
+}
+
+#computer {
+  background-image: url('../images/Computer-Transparent.png');
+}
+
+/* Game grid */
 #game {
   display: none;
   margin: 0 auto;
@@ -146,15 +208,16 @@ button:focus {
   display: grid;
   grid-column-gap: 4px;
   grid-row-gap: 4px;
+
+  width: 44vh;
+  height: 44vh;
 }
 
-.gridSquare {
-  cursor: pointer;
-
+.square {
   background-color: var(--dark-blue);
   border: var(--card-border);
   border-radius: 24px;
-  box-shadow: 0 0 6px rgba(0,33,66, 0.2);
+  box-shadow: var(--button-shadow);
   transition: background-color 0.1s ease;
 }
 
@@ -163,112 +226,60 @@ button:focus {
   height: 100%;
 }
 
-/* Eggs = Noughts */
-.nought {
-  background-image: url('../images/Egg-Transparent.png');
-  background-size: cover;
-  background-color: white;
-}
 
-/* Chicken = Crosses */
-.cross {
-  background-image: url('../images/Chicken-Transparent.png');
-  background-size: cover;
-  background-color: white;
-}
-
-.gridSquare:hover {
-  background-color: var(--prominant-yellow);
-}
-
-#resetButton {
-  display: none;
-
-  margin: 12px;
-  padding: 12px;
-
-  font-size: 24px;
-  color: white;
-
-  background-color: var(--dark-blue);
-  border: none;
-  border-radius: 12px;
-  box-shadow: 0 0 6px rgba(0,33,66, 0.2);
-}
-
-footer {
-  grid-area: "footer";
-  margin: 0 auto;
-}
-
-/* Desktop */
-@media screen
-and (min-device-width: 678px) {
-
-  body {
-    grid-template-rows: 0.25fr 1fr 48px;
+/* Media queries */
+@media screen and (max-device-width: 667px) {
+  #container {
+    height: 100vh;
+    margin: 16px;
   }
 
-  main{
-    width: 50%;
+  .desktopOnly {
+    display: none;
   }
 
-  .menuButton {
-    margin: 12px;
-    width: 20vh;
-    height: 20vh;
-  }
-
-  #instructions {
-    max-width: 65%;
-  }
-
-  #game {
-    width: 70vh;
-    height: 65vh;
-  }
-  #grid {
-    width: 60vh;
-    height: 60vh;
-  }
-}
-
-/* Mobile */
-@media only screen
-  and (min-device-width: 375px)
-  and (max-device-width: 667px)
-  and (-webkit-min-device-pixel-ratio: 2) {
-
-  body {
-    grid-template-rows: 0.6fr 1fr 64px;
-  }
-
-  .menuButton {
-    margin: 4px;
-    width: 18vh;
-    height: 18vh;
-  }
-
-  #computerButton {
-    font-size: 1.4rem;
-  }
-
-  #instructions {
-    max-width: 80%;
-    margin-bottom: 24px;
-  }
-
-  #game {
-    width: 45vh;
-    height: 45vh;
+  .gridOption{
+    font-size: 64px;
   }
 
   #grid {
     width: 44vh;
     height: 44vh;
   }
+}
 
-  .desktopGridOptions {
+@media screen and (max-device-width: 799px) {
+  #container {
+    height: 100vh;
+    margin: 32px;
+  }
+
+  .desktopOnly {  /* 5x5 and 6x6 not available on mobile */
     display: none;
+  }
+
+  .gridOption{
+    font-size: 32px;
+  }
+}
+
+@media screen and (min-device-width: 800px) {
+  #container {
+    height: 100vh;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .gridOption{
+    font-size: 32px;
+  }
+
+  .desktopOnly {
+    margin-top: 4px;
+  }
+
+  #grid {
+    width: 60vh;
+    height: 60vh;
   }
 }
