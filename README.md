@@ -11,7 +11,7 @@ Egg, Yolk, Chicken was built with a combination of JavaScript, jQuery, CSS and H
 ## Features
 
 - Option to play as the Egg or Chicken
-- Choose your grid size: 3x3, 4x4, 5x5 or 6x6 (5x5 and 6x6 not available on mobile).
+- Choose your grid size: 3x3, 4x4, 5x5 or 6x6 (5x5 and 6x6 not available on mobile due to limited size).
 - Play again (Note: It assumes you want the same grid and first go alternates between players).
 - Play against a basic AI or a non-basic human
 
@@ -23,12 +23,14 @@ Egg, Yolk, Chicken was built with a combination of JavaScript, jQuery, CSS and H
 
 ## Future Features
 
-- Intelligent AI
 - Start new game button (negate need to refresh to change game settings)
+- Aria-labels
+- Improved separation of ui and game logic
+- Improved responsiveness (Implemented in another branch but not yet set up to work with UI.js.
 
 ## Screenshots
 <img src="https://github.com/nimisaya/tic-tac-toe/blob/main/images/screenshots/chicken-or-egg.png" alt="Menu for choosing piece (Egg or Chicken)" width="30%"> <img src="https://github.com/nimisaya/tic-tac-toe/blob/main/images/screenshots/grid-selection.png" alt="Menu for choosing grid size" width="30%"> <img src="https://github.com/nimisaya/tic-tac-toe/blob/main/images/screenshots/gameplay.png" alt="Game play" width="30%"> 
 
 
 ## My experience developing the game
-My experience can be summed up as doing 80% of the work in 20% of the time and fixing bugs the remaining 80% of the time.
+My experience can be summed up as doing 80% of the work in 20% of the time and fixing bugs the remaining 80% of the time. I will definitely spend more time on thinking and planning next time 😅 . I started to refactor the code and clean it up a lot this weekend but life got in the way and I didn't finish, so to ensure it works please only refer to the main branch.
