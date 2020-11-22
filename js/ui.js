@@ -145,12 +145,7 @@ const updateGame = function(event){
   }
 }; // updateGame()
 
-const getSquarePosition = function(index){
-  const rowPosition = Math.floor(index / gridSize);
-  const columnPosition = index % gridSize;
 
-  return {row: rowPosition, column: columnPosition};
-}; // getSquarePosition()
 
 // Menu: player chooses piece, vs. computer or human & gridsize
 $('.menuButton').on('click', function(){

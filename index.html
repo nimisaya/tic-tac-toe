@@ -6,6 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Egg, Yolk, Chicken</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/jquery.js" charset="utf-8"></script>
+  <script src="js/gameUI.js" charset="utf-8"></script>
+  <script src="js/computer.js" charset="utf-8"></script>
+  <script src="js/gameLogic.js" charset="utf-8"></script>
+  <script src="js/menu.js" charset="utf-8"></script>
 </head>
 <body>
   <div id="container" class="centered">
@@ -14,21 +19,21 @@
       <p>Tic tac toe with a twist. Play as Chicken or Egg to solve the age old question of who came first.</p>
     </header>
     <main>
-      <div class="menu">
+      <div id="menu">
         <p id="menuQuestion">Play as a chicken or egg:</p>
         <div id="selectToken">
-          <button class="menuButton cross" aria-label="Chicken"></button>
-          <button class="menuButton nought" aria-label="Egg"></button>
+          <button class="menuButton chicken" id="cross" aria-label="Chicken"></button>
+          <button class="menuButton egg" id="nought" aria-label="Egg"></button>
         </div>
         <div id="selectGamemode">
-          <button class="menuButton human"></button>
-          <button class="menuButton computer"></button>
+          <button class="menuButton" id="human"></button>
+          <button class="menuButton" id="computer"></button>
         </div>
         <div id="selectBoardSize">
-          <button class="menuButton gridOption" aria-label="3 by 3 grid">3 x 3</button>
-          <button class="menuButton gridOption" aria-label="4 by 4 grid">4 x 4</button>
-          <button class="menuButton gridOption desktopOnly" aria-label="5 by 5 grid">5 x 5</button>
-          <button class="menuButton gridOption desktopOnly" aria-label="6 by 6 grid">6 x 6</button>
+          <button class="menuButton gridOption" id="gridThree" aria-label="3 by 3 grid">3 x 3</button>
+          <button class="menuButton gridOption" id="gridFour" aria-label="4 by 4 grid">4 x 4</button>
+          <button class="menuButton gridOption desktopOnly" id="gridFive" aria-label="5 by 5 grid">5 x 5</button>
+          <button class="menuButton gridOption desktopOnly" id="gridSix" aria-label="6 by 6 grid">6 x 6</button>
         </div>
       </div>
       <div id="game" aria-label="Game board">

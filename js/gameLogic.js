@@ -3,12 +3,12 @@ const game = {
     turn: true, // true: player one, false player two
     one: {
       token: '',
-    },// player.one
+    },
     two: {
       token: '',
       computerMode: false, // false: human vs. human
       // difficulty: 'easy',
-    }, // player.two
+    },
 
     setTokens: function(playerOneToken){
       if (playerOneToken === 'cross'){
@@ -19,6 +19,7 @@ const game = {
         this.two.token = 'cross';
       }
     }, // player.setTokens()
+
   }, // game.player
 
   rowSize: null,
@@ -84,7 +85,7 @@ const game = {
   }, // game.isValidMove()
 
   isWin: function(){
-    if(){
+    if(true){
       this.state.win = true;
     }
     return this.state.win;

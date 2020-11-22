@@ -94,7 +94,7 @@ button:focus {
   color: white;
 }
 
-.menu {
+#menu {
   display: grid;
   grid-auto-rows: repeat(2, 1fr);
   justify-content: center;
@@ -106,22 +106,56 @@ button:focus {
   background-size: cover;
   background-color: white;
   font-family: var(--heading-font);
-
 }
 
-.cross {
+#game {
+  display: none;
+  /* margin: 0 auto; */
+
+  flex-direction: row;
+  justify-content:center;
+  align-items: center;
+
+  height: 200px;
+  background-color: white;
+}
+
+#grid {
+  display: none;
+  grid-gap: 4px;
+}
+
+.gridSquare {
+  cursor: pointer;
+
+  background-color: var(--dark-blue);
+}
+
+.chicken {
   background-image: url('../images/Chicken-Transparent.png');
 }
 
-.nought {
+.egg {
   background-image: url('../images/Egg-Transparent.png');
 }
 
-.human {
+#nought {}
+
+#cross {}
+
+#selectGamemode{
+  display: none;
+}
+
+#selectBoardSize{
+  display: none;
+}
+
+#human {
   background-image: url('../images/Human-Transparent.png');
 }
 
-.computer {
+#computer {
   background-image: url('../images/Computer-Transparent.png');
 }
 
