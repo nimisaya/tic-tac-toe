@@ -4,49 +4,57 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Egg, Yolk, Chicken - Evolution of Tic Tac Toe</title>
+  <title>Egg, Yolk, Chicken</title>
   <link rel="stylesheet" href="css/style.css">
+​
+
 </head>
 <body>
-  <header>
-    <h1>Egg, Yolk, Chicken</h1>
-    <p id="instructions">Tic Tac Toe with a twist. Play as Chicken 'X' or Egg '0' to solve the age old question of who came first.</p>
-  </header>
-  <main>
-    <!-- Game options -->
-    <div id="menu">
-      <p id="menuQuestion">Choose player 1:</p>
-      <div id="pieceSelection">
-        <button class="menuButton" id="chickenButton"></button>
-        <button class="menuButton" id="eggButton" ></button>
-      </div>
-      <div id="playerTwoSelection">
-        <button class="menuButton" id="humanButton">Human</button>
-        <button class="menuButton" id="computerButton">Computer</button>
-      </div>
-      <div id='gridMenu'>
-          <button class="menuButton gridButton" id="gridThree">3 x 3</button>
-          <button class="menuButton gridButton" id="gridFour">4 x 4</button>
-          <div class="desktopGridOptions">
-            <button class="menuButton gridButton" id="gridFive">5 x 5</button>
-            <button class="menuButton gridButton" id="gridSix">6 x 6</button>
+  <div id="container" class="centered">
+    <header>
+      <h1>Egg, Yolk, Chicken</h1>
+      <p>Tic tac toe with a twist. Play as Chicken or Egg to solve the age old question of who came first.</p>
+    </header>
+    <main>
+      <div class="menu">
+        <p id="menuQuestion">Play as a chicken or egg:</p>
+        <div id="selectToken">
+          <button class="imageButton menuButton chicken" id="cross" aria-label="Chicken"></button>
+          <button class="imageButton menuButton egg" id="nought" aria-label="Egg"></button>
+        </div>
+        <div id="selectGamemode">
+          <button class="imageButton menuButton" id="human"></button>
+          <button class="imageButton menuButton" id="computer"></button>
+        </div>
+        <div id="selectBoardSize">
+          <button class="imageButton menuButton gridOption" id="gridThree" aria-label="3 by 3 grid">3 x 3</button>
+          <button class="imageButton menuButton gridOption" id="gridFour" aria-label="4 by 4 grid">4 x 4</button>
+          <div class="desktopOnly">
+             <button class="imageButton menuButton gridOption" id="gridFive" aria-label="5 by 5 grid">5 x 5</button>
+             <button class="imageButton menuButton gridOption" id="gridSix" aria-label="6 by 6 grid">6 x 6</button>
           </div>
+        </div>
       </div>
-    </div>
-
-    <div id="game">
-      <div id="grid">
-        <!-- Game Squares generated in JavaScript -->
+      <div id="game" aria-label="Gameboard">
+        <div id="grid" aria-label="Grid">
+          <!-- Game squares -->
+        </div>
       </div>
-    </div>
-    <h2 id="gameOverMessage"></h2>
-    <button id="resetButton">Play again</button>
-  </main>
-  <footer>
-    <p><small>© Amanda Jarvinen, 2020</small></p>
-  </footer>
-  <script src="js/jquery.js" charset="utf-8"></script>
-  <script src="js/gameLogic.js" charset="utf-8"></script>
-  <script src="js/ui.js" charset="utf-8"></script>
+​
+    </main>
+      <div id="gameInformation">
+        <h2 id="gameOverMessage"></h2>
+        <div id="newgame">
+          <button class="primaryButton" id="reset" aria-label="Play again">Play again</button>
+          <button class="primaryButton" id="settings" aria-label= "Settings">Settings</button>
+        </div>
+      </div>
+      <footer>
+      <p><small>© Amanda Jarvinen, 2020</small></p>
+    </footer>
+  </div>
+  <script src="js/jquery.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/gameLogic.js"></script>
 </body>
 </html>
