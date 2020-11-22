@@ -26,7 +26,7 @@ Egg, Yolk, Chicken was built with a combination of JavaScript, jQuery, CSS and H
 - Start new game button (negate need to refresh to change game settings)
 - Aria-labels
 - Improved separation of ui and game logic
-- Improved responsiveness (Implemented in another branch but not yet set up to work with UI.js.
+- Improved responsiveness
 
 ## Screenshots
 <img src="https://github.com/nimisaya/tic-tac-toe/blob/main/images/screenshots/chicken-or-egg.png" alt="Menu for choosing piece (Egg or Chicken)" width="30%"> <img src="https://github.com/nimisaya/tic-tac-toe/blob/main/images/screenshots/grid-selection.png" alt="Menu for choosing grid size" width="30%"> <img src="https://github.com/nimisaya/tic-tac-toe/blob/main/images/screenshots/gameplay.png" alt="Game play" width="30%"> 
