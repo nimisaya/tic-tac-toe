@@ -33,4 +33,4 @@ Egg, Yolk, Chicken was built with a combination of JavaScript, jQuery, CSS and H
 
 
 ## My experience developing the game
-My experience can be summed up as doing 80% of the work in 20% of the time and fixing bugs the remaining 80% of the time. I will definitely spend more time on thinking and planning next time 😅 . I started to refactor the code and clean it up a lot this weekend but life got in the way and I didn't finish, so to ensure it works please only refer to the main branch.
+My experience can be summed up as doing 80% of the work in 20% of the time and fixing bugs the remaining 80% of the time. I will definitely spend more time on thinking and planning next time 😅 . I started to refactor the code and clean it up but life got in the way and I am yet to be motivated to come back to this project.
